@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Search, X, ChevronDown, ChevronUp, ExternalLink } from 'lucide-react';
+import { Search, ChevronDown, ChevronUp, ExternalLink } from 'lucide-react';
 
 // TypeScript interfaces
 interface Contractor {
@@ -25,7 +25,6 @@ interface FilterState {
   registrationNumber: string;
   companyName: string;
   city: string;
-  province: string;
   size: string;
   equipment: string;
   operation: string;
@@ -155,7 +154,7 @@ const contractorData: Contractor[] = [
 ];
 
 // Available provinces and equipment types for filters
-const provinces: string[] = ["BC", "AB", "ON", "QC", "MB", "SK", "NS", "NB", "NL", "PE", "YT", "NT", "NU"];
+//const provinces: string[] = ["BC", "AB", "ON", "QC", "MB", "SK", "NS", "NB", "NL", "PE", "YT", "NT", "NU"];
 const sizes: string[] = [">20 employees", "6-19 employed", "2-5 employed", "Individual owner operator"];
 const equipmentTypes: string[] = ["Feller Buncher", "Forwarder", "Processor", "Cat processor", "Cut-to-length machinery", "Tree length equipment"];
 const operationTypes: string[] = ["Softwood", "cut-to-length", "Tree length", "Long and short wood processing", "stumpside delivery"];
@@ -167,7 +166,6 @@ const ContractorRegistry: React.FC = () => {
     registrationNumber: "",
     companyName: "",
     city: "",
-    province: "",
     size: "",
     equipment: "",
     operation: ""
@@ -213,10 +211,6 @@ const ContractorRegistry: React.FC = () => {
       }
       
       if (filters.city && !contractor.city.toLowerCase().includes(filters.city.toLowerCase())) {
-        return false;
-      }
-      
-      if (filters.province && contractor.province !== filters.province) {
         return false;
       }
       
@@ -276,7 +270,6 @@ const ContractorRegistry: React.FC = () => {
       registrationNumber: "",
       companyName: "",
       city: "",
-      province: "",
       size: "",
       equipment: "",
       operation: ""
@@ -386,22 +379,6 @@ const ContractorRegistry: React.FC = () => {
             </div>
             
             <div>
-              <label htmlFor="province" className="block font-medium mb-1">Province</label>
-              <select 
-                id="province" 
-                name="province" 
-                value={filters.province} 
-                onChange={handleChange} 
-                className="w-full px-3 py-2 border border-gray-300 rounded-md"
-              >
-                <option value="">Select...</option>
-                {provinces.map(province => (
-                  <option key={province} value={province}>{province}</option>
-                ))}
-              </select>
-            </div>
-            
-            <div>
               <label htmlFor="equipment" className="block font-medium mb-1">Equipment</label>
               <select 
                 id="equipment" 
@@ -472,9 +449,6 @@ const ContractorRegistry: React.FC = () => {
                   <th className="px-4 py-3 cursor-pointer" onClick={() => handleSort("city")}>
                     City {renderSortIndicator("city")}
                   </th>
-                  <th className="px-4 py-3 cursor-pointer" onClick={() => handleSort("province")}>
-                    Province {renderSortIndicator("province")}
-                  </th>
                   <th className="px-4 py-3">Equipment</th>
                   <th className="px-4 py-3">Operations</th>
                   <th className="px-4 py-3 cursor-pointer" onClick={() => handleSort("size")}>
@@ -494,7 +468,6 @@ const ContractorRegistry: React.FC = () => {
                       <td className="px-4 py-3">{contractor.registrationNumber}</td>
                       <td className="px-4 py-3 font-medium">{contractor.companyName}</td>
                       <td className="px-4 py-3">{contractor.city}</td>
-                      <td className="px-4 py-3">{contractor.province}</td>
                       <td className="px-4 py-3">
                         {contractor.equipment.length > 0 ? (
                           <ul className="list-disc pl-4">

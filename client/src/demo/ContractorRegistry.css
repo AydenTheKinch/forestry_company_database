@@ -1,0 +1,45 @@
+.contractor-registry-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+.search-container {
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.results-container {
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.results-container table {
+  width: 100%;
+  text-align: left;
+}
+
+.results-container th {
+  background: #f9f9f9;
+  padding: 0.75rem;
+  cursor: pointer;
+}
+
+.results-container td {
+  padding: 0.75rem;
+}
+
+.results-container tr:hover {
+  background: #f5f5f5;
+}

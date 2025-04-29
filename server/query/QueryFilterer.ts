@@ -1,19 +1,19 @@
-import { InsightError, Rooms, Section } from "../controller/IInsightFacade";
+import { InsightError, Rooms, Contractor } from "../controller/IInsightFacade";
 
 export default class QueryFilterer {
-	private readonly filteredSections: (Section | Rooms)[];
+	private readonly filteredContractors: (Contractor | Rooms)[];
 
-	constructor(sections: (Section | Rooms)[], query: unknown) {
-		this.filteredSections = this.applyFilter(sections, query);
+	constructor(contractors: Contractor[], query: unknown) {
+		this.filteredContractors = this.applyFilter(contractors, query);
 	}
 
-	public getFilteredSections(): (Section | Rooms)[] {
-		return this.filteredSections;
+	public getFilteredContractors(): Contractor[] {
+		return this.filteredContractors;
 	}
 
-	private applyFilter(sections: (Section | Rooms)[], condition: any): (Section | Rooms)[] {
+	private applyFilter(contractors: Contractor[], condition: any): Contractor[] {
 		if (!condition || Object.keys(condition).length === 0) {
-			return sections;
+			return contractors;
 		}
 
 		const key = Object.keys(condition)[0];
@@ -21,29 +21,29 @@ export default class QueryFilterer {
 
 		switch (key) {
 			case "GT":
-				return this.filterByComparison(sections, subquery, (a, b) => a > b);
+				return this.filterByComparison(contractors, subquery, (a, b) => a > b);
 			case "LT":
-				return this.filterByComparison(sections, subquery, (a, b) => a < b);
+				return this.filterByComparison(contractors, subquery, (a, b) => a < b);
 			case "EQ":
-				return this.filterByComparison(sections, subquery, (a, b) => a === b);
+				return this.filterByComparison(contractors, subquery, (a, b) => a === b);
 			case "IS":
-				return this.filterByString(sections, subquery);
+				return this.filterByString(contractors, subquery);
 			case "AND":
-				return this.applyLogicalOperator(sections, subquery, "AND");
+				return this.applyLogicalOperator(contractors, subquery, "AND");
 			case "OR":
-				return this.applyLogicalOperator(sections, subquery, "OR");
+				return this.applyLogicalOperator(contractors, subquery, "OR");
 			case "NOT":
-				return this.applyNegation(sections, subquery);
+				return this.applyNegation(contractors, subquery);
 			default:
 				throw new InsightError(`Invalid filter key: ${key}`);
 		}
 	}
 
 	private filterByComparison(
-		sections: (Section | Rooms)[],
+		contractors: Contractor[],
 		subquery: any,
 		comparator: (a: number, b: number) => boolean
-	): (Section | Rooms)[] {
+	): Contractor[] {
 		const field = Object.keys(subquery)[0];
 		const fieldName = field.split("_")[1];
 		const value = subquery[field];
@@ -52,15 +52,15 @@ export default class QueryFilterer {
 			throw new InsightError(`Field "${field}" must be a number for MCOMP filter.`);
 		}
 
-		return sections.filter((section) => {
-			if (typeof section[fieldName as keyof (Section | Rooms)] !== "number") {
+		return contractors.filter((contractor) => {
+			if (typeof contractor[fieldName as keyof Contractor] !== "number") {
 				throw new InsightError(`Field "${fieldName}" is not a number!`);
 			}
-			return comparator(section[fieldName as keyof (Section | Rooms)], value);
+			return comparator(contractor[fieldName as keyof Contractor], value);
 		});
 	}
 
-	private filterByString(sections: (Section | Rooms)[], subquery: any): (Section | Rooms)[] {
+	private filterByString(contractors: Contractor[], subquery: any): Contractor[] {
 		const field = Object.keys(subquery)[0];
 		const fieldName = field.split("_")[1];
 		const value = subquery[field];
@@ -69,22 +69,22 @@ export default class QueryFilterer {
 			throw new InsightError(`Field "${field}" must be a string for IS filter.`);
 		}
 
-		return sections.filter((section) => {
-			if (typeof section[fieldName as keyof (Section | Rooms)] !== "string") {
+		return contractors.filter((contractor) => {
+			if (typeof contractor[fieldName as keyof Contractor] !== "string") {
 				throw new InsightError(`Field "${fieldName}" is not a string.`);
 			}
-			const sectionValue: string = section[fieldName as keyof (Section | Rooms)];
+			const contractorValue: string = contractor[fieldName as keyof Contractor];
 			if (!value.includes("*")) {
-				return sectionValue === value;
+				return contractorValue === value;
 			} else if (value.startsWith("*") && value.endsWith("*")) {
 				const searchString = value.slice(1, -1);
-				return sectionValue.includes(searchString);
+				return contractorValue.includes(searchString);
 			} else if (value.startsWith("*")) {
 				const searchString = value.slice(1);
-				return sectionValue.endsWith(searchString);
+				return contractorValue.endsWith(searchString);
 			} else if (value.endsWith("*")) {
 				const searchString = value.slice(0, -1);
-				return sectionValue.startsWith(searchString);
+				return contractorValue.startsWith(searchString);
 			}
 
 			throw new InsightError(`The IS logic of ${value} failed!`);
@@ -92,30 +92,30 @@ export default class QueryFilterer {
 	}
 
 	private applyLogicalOperator(
-		sections: (Section | Rooms)[],
+		contractors: Contractor[],
 		subqueries: any[],
 		operator: "AND" | "OR"
-	): (Section | Rooms)[] {
+	): Contractor[] {
 		if (!Array.isArray(subqueries) || subqueries.length === 0) {
 			throw new InsightError(`"${operator}" operator requires a non-empty array.`);
 		}
 
 		if (operator === "AND") {
-			let filteredSections = sections;
+			let filteredContractors = contractors;
 			for (const subquery of subqueries) {
-				filteredSections = this.applyFilter(filteredSections, subquery);
+				filteredContractors = this.applyFilter(filteredContractors, subquery);
 			}
-			return filteredSections;
+			return filteredContractors;
 		} else if (operator === "OR") {
-			const results = subqueries.map((subquery) => this.applyFilter(sections, subquery));
+			const results = subqueries.map((subquery) => this.applyFilter(contractors, subquery));
 			return Array.from(new Set(results.flat()));
 		} else {
 			throw new InsightError("Unexpected operator!");
 		}
 	}
 
-	private applyNegation(sections: (Section | Rooms)[], subquery: any): (Section | Rooms)[] {
-		const filteredSections = this.applyFilter(sections, subquery);
-		return sections.filter((section) => !filteredSections.includes(section));
+	private applyNegation(contractors: Contractor[], subquery: any): (Contractor | Rooms)[] {
+		const filteredContractors = this.applyFilter(contractors, subquery);
+		return contractors.filter((contractor) => !filteredContractors.includes(contractor));
 	}
 }

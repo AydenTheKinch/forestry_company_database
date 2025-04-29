@@ -15,7 +15,7 @@ import QueryAggregator from "./QueryAggregator";
 
 export default class QueryEngine {
 	private readonly jsonQuery: any;
-	private readonly sections: (Section | Rooms)[];
+	private readonly sections: Section[];
 	private readonly datasetId: string | null = null;
 	private readonly datasetType: string | null = null;
 	private validator: QueryValidator;
@@ -41,7 +41,7 @@ export default class QueryEngine {
 		return false;
 	}
 
-	private getSections(id: string | null, datasets: Datasets[]): (Section | Rooms)[] {
+	private getSections(id: string | null, datasets: Datasets[]): Section[] {
 		for (const dataset of datasets) {
 			if (dataset.insightDataset.id === id) {
 				return dataset.data;
@@ -80,7 +80,7 @@ export default class QueryEngine {
 		}
 	}
 
-	public filterSections(sections: (Section | Rooms)[]): (Section | Rooms)[] {
+	public filterSections(sections: Section[]): Section[] {
 		if (!this.jsonQuery || typeof this.jsonQuery !== "object") {
 			throw new InsightError("Invalid query structure");
 		}

@@ -14,18 +14,11 @@ export interface Contractor {
   address: string;
   phone: string;
   website: string;
+  lat: number;
+  lon: number
 }
 
-export interface FilterState {
-  keyword: string;
-  registrationNumber: string;
-  companyName: string;
-  city: string;
-  size: string;
-  equipment: string;
-  operation: string;
-}
-
+// For the demo, here's the data with populated coordinates
 export const contractorData: Contractor[] = [
     {
         id: 1,
@@ -42,7 +35,9 @@ export const contractorData: Contractor[] = [
         capacity: "350,000 cubic metres",
         address: "1300 Morice River Rd, Houston, BC, V0J 1Z0",
         phone: "250-845-0093",
-        website: ""
+        website: "",
+        lat: 54.3988,
+        lon: -126.9658
     },
     {
         id: 4,
@@ -59,7 +54,9 @@ export const contractorData: Contractor[] = [
         capacity: "430,000 cubic metres",
         address: "8377 John Hart Hwy, Prince George, BC, V2K 3B8",
         phone: "(250) 962-8644",
-        website: ""
+        website: "",
+        lat: 53.9631,
+        lon: -122.6844
     },
     {
         id: 5,
@@ -76,7 +73,9 @@ export const contractorData: Contractor[] = [
         capacity: "",
         address: "4746 Beatty, Canal Flats, BC, V0B 1B0",
         phone: "250-349-5415",
-        website: ""
+        website: "",
+        lat: 50.1494,
+        lon: -115.8311
     },
     {
         id: 8,
@@ -93,7 +92,9 @@ export const contractorData: Contractor[] = [
         capacity: "300,000 cubic metres",
         address: "",
         phone: "",
-        website: ""
+        website: "",
+        lat: 55.3434,
+        lon: -123.0935
     },
     {
         id: 33,
@@ -110,7 +111,9 @@ export const contractorData: Contractor[] = [
         capacity: "450,000 cubic metres",
         address: "",
         phone: "",
-        website: "http://www.jdforestmanagement.ca/"
+        website: "http://www.jdforestmanagement.ca/",
+        lat: 54.4426,
+        lon: -124.2536
     },
     {
         id: 46,
@@ -127,7 +130,9 @@ export const contractorData: Contractor[] = [
         capacity: "",
         address: "",
         phone: "",
-        website: "https://westwoodfibre.ca/"
+        website: "https://westwoodfibre.ca/",
+        lat: 50.1163,
+        lon: -122.9574
     },
     {
         id: 48,
@@ -144,7 +149,9 @@ export const contractorData: Contractor[] = [
         capacity: "",
         address: "",
         phone: "",
-        website: ""
+        website: "",
+        lat: 53.9171,
+        lon: -122.7497
     }
 ];
 

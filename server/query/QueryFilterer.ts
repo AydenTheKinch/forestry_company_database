@@ -1,4 +1,4 @@
-import { InsightError, Rooms, Contractor } from "../controller/IInsightFacade";
+import { InsightError, Rooms, Contractor } from "../controller/IDatabaseFacade";
 
 export default class QueryFilterer {
 	private readonly filteredContractors: (Contractor | Rooms)[];

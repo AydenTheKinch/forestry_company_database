@@ -1,10 +1,8 @@
 import express, { Application, Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
-import { Log } from "@ubccpsc310/project-support";
-import InsightFacade from "../controller/InsightFacade";
+import InsightFacade from "../controller/IDatasetFacade";
 import * as http from "http";
 import cors from "cors";
-import { InsightDatasetKind, InsightError, NotFoundError } from "../controller/IInsightFacade";
 
 export default class Server {
 	private readonly port: number;

@@ -1,4 +1,4 @@
-import { Rooms, Section, InsightResult } from "../controller/IInsightFacade";
+import { Rooms, Section, InsightResult } from "../controller/IDatabaseFacade";
 
 export default class QueryRenderer {
 	private jsonQuery: any;

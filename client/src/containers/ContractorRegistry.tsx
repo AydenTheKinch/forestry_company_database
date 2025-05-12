@@ -55,7 +55,7 @@ const ContractorRegistry: React.FC = () => {
         const matchesKeyword = 
           contractor.companyName.toLowerCase().includes(keyword) ||
           contractor.city.toLowerCase().includes(keyword) ||
-          contractor.addess.toLowerCase().includes(keyword) ||
+          contractor.address.toLowerCase().includes(keyword) ||
           contractor.status.toLowerCase().includes(keyword) ||
           contractor.operations.some(o => o.toLowerCase().includes(keyword));
           

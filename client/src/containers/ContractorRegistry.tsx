@@ -8,22 +8,20 @@ import './ContractorRegistry.css';
 
 export interface FilterState {
   keyword: string;
-  registrationNumber: string;
   companyName: string;
   city: string;
   size: string;
-  equipment: string;
+  status: string;
   operation: string;
 }
 
 const ContractorRegistry: React.FC = () => {
   const [filters, setFilters] = useState<FilterState>({
     keyword: "",
-    registrationNumber: "",
     companyName: "",
     city: "",
     size: "",
-    equipment: "",
+    status: "",
     operation: ""
   });
   const [filteredData, setFilteredData] = useState<Contractor[]>(contractorData);
@@ -57,18 +55,14 @@ const ContractorRegistry: React.FC = () => {
         const matchesKeyword = 
           contractor.companyName.toLowerCase().includes(keyword) ||
           contractor.city.toLowerCase().includes(keyword) ||
-          contractor.registrationNumber.toLowerCase().includes(keyword) ||
-          contractor.equipment.some(e => e.toLowerCase().includes(keyword)) ||
+          contractor.addess.toLowerCase().includes(keyword) ||
+          contractor.status.toLowerCase().includes(keyword) ||
           contractor.operations.some(o => o.toLowerCase().includes(keyword));
           
         if (!matchesKeyword) return false;
       }
       
-      // Specific field filters
-      if (filters.registrationNumber && !contractor.registrationNumber.includes(filters.registrationNumber)) {
-        return false;
-      }
-      
+      // Specific field filters      
       if (filters.companyName && !contractor.companyName.toLowerCase().includes(filters.companyName.toLowerCase())) {
         return false;
       }
@@ -80,8 +74,8 @@ const ContractorRegistry: React.FC = () => {
       if (filters.size && contractor.size !== filters.size) {
         return false;
       }
-      
-      if (filters.equipment && !contractor.equipment.some(e => e.toLowerCase().includes(filters.equipment.toLowerCase()))) {
+
+      if (filters.status && contractor.status !== filters.status) {
         return false;
       }
       
@@ -127,11 +121,10 @@ const ContractorRegistry: React.FC = () => {
   const handleClear = () => {
     setFilters({
       keyword: "",
-      registrationNumber: "",
       companyName: "",
       city: "",
       size: "",
-      equipment: "",
+      status: "",
       operation: ""
     });
     setShowResults(false);

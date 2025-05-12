@@ -1,18 +1,9 @@
 import { Search, ChevronDown, ChevronUp } from 'lucide-react';
-import { sizes, equipmentTypes, operationTypes } from '../containers/ContractorRegistryData';
+import { sizes, statuses } from '../containers/ContractorRegistryData';
+import { FilterState } from '../containers/ContractorRegistry'
 import { FormInput } from "./SearchForm.FormInput"
 import { FormSelect } from './SearchForm.FormSelect';
 import React from 'react';
-
-interface FilterState {
-    keyword: string;
-    registrationNumber: string;
-    companyName: string;
-    city: string;
-    size: string;
-    equipment: string;
-    operation: string;
-  }
 
 interface SearchFormProps {
     filters: FilterState;
@@ -70,15 +61,6 @@ export const SearchForm: React.FC<SearchFormProps> = ({
           {showAdvanced && (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
               <FormInput 
-                id="registrationNumber"
-                name="registrationNumber"
-                value={filters.registrationNumber}
-                onChange={handleChange}
-                label="Registration number"
-                placeholder="e.g. BC-0914356"
-              />
-              
-              <FormInput 
                 id="companyName"
                 name="companyName"
                 value={filters.companyName}
@@ -104,23 +86,23 @@ export const SearchForm: React.FC<SearchFormProps> = ({
                 label="Size"
                 options={sizes}
               />
-              
+
               <FormSelect
-                id="equipment"
-                name="equipment"
-                value={filters.equipment}
+                id="status"
+                name="status"
+                value={filters.status}
                 onChange={handleChange}
-                label="Equipment"
-                options={equipmentTypes}
+                label="Status"
+                options={statuses}
               />
               
-              <FormSelect
+              <FormInput
                 id="operation"
                 name="operation"
                 value={filters.operation}
                 onChange={handleChange}
                 label="Operation Type"
-                options={operationTypes}
+                placeholder="Enter operation"
               />
             </div>
           )}

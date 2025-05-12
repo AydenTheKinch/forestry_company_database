@@ -26,13 +26,6 @@ export const ResultsTable: React.FC<ResultsTableProps> = ({
           <thead className="bg-gray-100 border-b">
             <tr>
               <SortableTableHeader 
-                field="registrationNumber"
-                label="Registration Number"
-                currentSortField={sortField}
-                sortDirection={sortDirection}
-                onSort={handleSort}
-              />
-              <SortableTableHeader 
                 field="companyName"
                 label="Contractor Name"
                 currentSortField={sortField}
@@ -46,7 +39,7 @@ export const ResultsTable: React.FC<ResultsTableProps> = ({
                 sortDirection={sortDirection}
                 onSort={handleSort}
               />
-              <th className="px-4 py-3">Equipment</th>
+              <th className="px-4 py-3">Status</th>
               <th className="px-4 py-3">Operations</th>
               <SortableTableHeader 
                 field="size"
@@ -66,28 +59,22 @@ export const ResultsTable: React.FC<ResultsTableProps> = ({
             ) : (
               filteredData.map(contractor => (
                 <tr key={contractor.id} className="border-b hover:bg-gray-50">
-                  <td className="px-4 py-3">{contractor.registrationNumber}</td>
-                  <td className="px-4 py-3 font-medium">{contractor.companyName}</td>
                   <td className="px-4 py-3">
-                    {contractor.city ? (
-                      <button 
+                    {contractor.lat && contractor.lon ? (
+                      <button
                         onClick={() => handleCityClick(contractor)}
                         className="text-blue-600 hover:underline cursor-pointer"
                         title="Click to view on map"
                       >
-                        {contractor.city}
+                        {contractor.companyName}
                       </button>
-                    ) : "N/A"}
+                    ) : "N/A"
+                  }
                   </td>
-                  <td className="px-4 py-3">
-                    {contractor.equipment.length > 0 ? (
-                      <ul className="list-disc pl-4">
-                        {contractor.equipment.map((item, index) => (
-                          <li key={index}>{item}</li>
-                        ))}
-                      </ul>
-                    ) : "N/A"}
+                  <td className="px-4 py-3 font-medium">
+                    {contractor.city}
                   </td>
+                  <td className="px-4 py-3 font-medium">{contractor.status}</td>
                   <td className="px-4 py-3">
                     {contractor.operations.length > 0 ? (
                       <ul className="list-disc pl-4">

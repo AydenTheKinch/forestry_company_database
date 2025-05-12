@@ -3,6 +3,7 @@ import { contractorData, Contractor } from './ContractorRegistryData';
 import { SearchForm } from '../components/SearchForm';
 import { ContractorMap } from '../components/Map'; 
 import { ResultsTable } from '../components/ResultsTable';
+import { searchContractors } from '../services/ContractorAPI';
 import './ContractorRegistry.css';
 
 export interface FilterState {
@@ -36,6 +37,17 @@ const ContractorRegistry: React.FC = () => {
     const { name, value } = e.target;
     setFilters({ ...filters, [name]: value });
   };
+
+  // const handleSearch = async () => {
+  //   try {
+  //       const results = await searchContractors(filters, sortField, sortDirection);
+  //       setFilteredData(results);
+  //       setShowResults(true);
+  //   } catch (error) {
+  //       console.error('Search failed:', error);
+  //       // Add error handling UI as needed
+  //   }
+  // };
 
   const handleSearch = () => {
     let results = contractorData.filter(contractor => {

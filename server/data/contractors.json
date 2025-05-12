@@ -1,0 +1,196 @@
+[
+  {
+    "companyName": "Marlo Logging Ltd",
+    "city": "Quesnel",
+    "province": "BC",
+    "postal_code": "V2J 3J2",
+    "size": "6-19 employed",
+    "operations": [],
+    "status": "Active",
+    "founded": "6/30/1989 0:00",
+    "address": "PO Box 4064 Stn Main",
+    "phone": "250-991-9904",
+    "website": "https://www.marlologging.ca/",
+    "lat": 53.0335006,
+    "lon": -122.4860933
+  },
+  {
+    "companyName": "Frost Lake Logging Ltd",
+    "city": "Prince George",
+    "province": "BC",
+    "postal_code": "V2N 0C6",
+    "size": ">20 employees",
+    "operations": [],
+    "status": "Active",
+    "founded": "5/1/2019 0:00",
+    "address": "9653 Anzac Cres",
+    "phone": "250-562-2482",
+    "website": "https://www.frostlake.ca/",
+    "lat": 53.8361541,
+    "lon": -122.7348802
+  },
+  {
+    "companyName": "R. Clauson Logging Ltd.",
+    "size": ">20 employees",
+    "operations": [],
+    "status": "Active",
+    "founded": "6/1/2011 0:00"
+  },
+  {
+    "companyName": "Hi-Sky Enterprises Ltd.",
+    "size": ">20 employees",
+    "operations": [],
+    "status": "Active",
+    "founded": "12/3/1981 0:00"
+  },
+  {
+    "companyName": "Integrated Operations Group Inc.",
+    "size": "6-19 employed",
+    "operations": []
+  },
+  {
+    "companyName": "Shinedown Enterprises Ltd.",
+    "size": "6-19 employed",
+    "operations": [],
+    "status": "Active",
+    "founded": "1/1/2019 0:00"
+  },
+  {
+    "companyName": "Tsi Del Del Enterprises Limited",
+    "size": ">20 employees",
+    "operations": []
+  },
+  {
+    "companyName": "Volktrans-Canada Ltd.",
+    "size": "6-19 employed",
+    "operations": [],
+    "status": "Active",
+    "founded": "3/6/2015 0:00"
+  },
+  {
+    "companyName": "West Chilcotin Forest Products Ltd.",
+    "size": "6-19 employed",
+    "operations": [],
+    "status": "Active",
+    "founded": "1/13/1994 0:00"
+  },
+  {
+    "companyName": "Timber Baron Contracting Ltd",
+    "province": "BC",
+    "postal_code": "V8G 1S6",
+    "size": "6-19 employed",
+    "operations": [],
+    "status": "Active",
+    "founded": "9/1/2020 0:00",
+    "address": "4650 Lazelle Ave #203, Terrace",
+    "phone": "(250) 635-7677",
+    "website": "https://timberbaron.ca/",
+    "lat": 54.5178321,
+    "lon": -128.590911
+  },
+  {
+    "companyName": "Sarver Wood Fibre",
+    "province": "?",
+    "size": "6-19 employed",
+    "operations": [],
+    "status": "Active",
+    "founded": "5/19/2005 0:00",
+    "address": "NA",
+    "phone": "(250) 395-1722",
+    "website": "https://sarverwood.com/",
+    "lat": 54.3264307,
+    "lon": -124.5268441
+  },
+  {
+    "companyName": "Amboy Logging Ltd",
+    "province": "BC",
+    "postal_code": "V2J 6W8",
+    "size": "6-19 employed",
+    "operations": [],
+    "status": "Active",
+    "founded": "5/1/2016 0:00",
+    "address": "4238 Comeau Rd, Quesnel",
+    "phone": "(250) 992-8771",
+    "website": "NA",
+    "lat": 53.0330883,
+    "lon": -122.4853037
+  },
+  {
+    "companyName": "Suncoast Logging Ltd",
+    "province": "BC",
+    "postal_code": "V0K 1P0",
+    "size": ">20 employees",
+    "operations": [],
+    "status": "Active",
+    "founded": "2/21/2006 0:00",
+    "address": "Gold Bridge",
+    "phone": "(250) 283-7764",
+    "website": "NA",
+    "lat": 50.855906,
+    "lon": -122.83414
+  },
+  {
+    "companyName": "Long's Logging",
+    "city": "Terrace",
+    "province": "BC",
+    "postal_code": "V8G 4A1",
+    "size": "6-19 employed",
+    "operations": [],
+    "status": "Active",
+    "founded": "9/30/1999 0:00",
+    "address": "GD Lcd Main",
+    "phone": "250-615-2402"
+  },
+  {
+    "companyName": "Clusko Logging",
+    "city": "Kelowna",
+    "province": "BC",
+    "postal_code": "V1V 2G9",
+    "size": ">20 employees",
+    "operations": ["Cut-to-length", "softwood for sawlogs and pulp", "incidental cut-to-length", "stump-to-dump delivery"],
+    "status": "Active",
+    "founded": "3/1/2018 0:00",
+    "capacity": "730,000 cubic metres",
+    "address": "153 Pinto Rd",
+    "phone": "250-765-3343",
+    "lat": 49.9190184,
+    "lon": -119.395615
+  },
+  {
+    "companyName": "Groot Bros Contracting Ltd",
+    "operations": [],
+    "status": "Active",
+    "founded": "7/1/2011 0:00"
+  },
+  {
+    "companyName": "Freya Logging Inc",
+    "operations": []
+  },
+  {
+    "companyName": "Nilsson Select Contracting Ltd.",
+    "size": "2-5 employed",
+    "operations": [],
+    "status": "Active",
+    "founded": "3/15/2002 0:00"
+  },
+  {
+    "companyName": "Borland Creek Logging Ltd.",
+    "size": ">20 employees",
+    "operations": [],
+    "status": "Active",
+    "founded": "7/7/1994 0:00"
+  },
+  {
+    "companyName": "A.M. Anderson Ventures Ltd.",
+    "operations": [],
+    "status": "Active",
+    "founded": "7/8/2015 0:00"
+  },
+  {
+    "companyName": "Skywest Environmental Inc.",
+    "size": "6-19 employed",
+    "operations": [],
+    "status": "Active",
+    "founded": "1/21/2011 0:00"
+  }
+]

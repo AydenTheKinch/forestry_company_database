@@ -1,7 +1,7 @@
 import { InsightError, Rooms, Contractor } from "../controller/IDatabaseFacade";
 
 export default class QueryFilterer {
-	private readonly filteredContractors: (Contractor | Rooms)[];
+	private readonly filteredContractors: Contractor[];
 
 	constructor(contractors: Contractor[], query: unknown) {
 		this.filteredContractors = this.applyFilter(contractors, query);
@@ -70,25 +70,36 @@ export default class QueryFilterer {
 		}
 
 		return contractors.filter((contractor) => {
-			if (typeof contractor[fieldName as keyof Contractor] !== "string") {
-				throw new InsightError(`Field "${fieldName}" is not a string.`);
+			const contractorValue = contractor[fieldName as keyof Contractor];
+			
+			// Handle array fields (like operations)
+			if (Array.isArray(contractorValue)) {
+				return contractorValue.some(item => this.matchString(item, value));
 			}
-			const contractorValue: string = contractor[fieldName as keyof Contractor];
-			if (!value.includes("*")) {
-				return contractorValue === value;
-			} else if (value.startsWith("*") && value.endsWith("*")) {
-				const searchString = value.slice(1, -1);
-				return contractorValue.includes(searchString);
-			} else if (value.startsWith("*")) {
-				const searchString = value.slice(1);
-				return contractorValue.endsWith(searchString);
-			} else if (value.endsWith("*")) {
-				const searchString = value.slice(0, -1);
-				return contractorValue.startsWith(searchString);
+			
+			// Handle string fields
+			if (typeof contractorValue !== "string") {
+				throw new InsightError(`Field "${fieldName}" is not a string or array.`);
 			}
-
-			throw new InsightError(`The IS logic of ${value} failed!`);
+			
+			return this.matchString(contractorValue, value);
 		});
+	}
+
+	private matchString(contractorValue: string, pattern: string): boolean {
+		if (!pattern.includes("*")) {
+			return contractorValue === pattern;
+		} else if (pattern.startsWith("*") && pattern.endsWith("*")) {
+			const searchString = pattern.slice(1, -1);
+			return contractorValue.toLowerCase().includes(searchString.toLowerCase());
+		} else if (pattern.startsWith("*")) {
+			const searchString = pattern.slice(1);
+			return contractorValue.toLowerCase().endsWith(searchString.toLowerCase());
+		} else if (pattern.endsWith("*")) {
+			const searchString = pattern.slice(0, -1);
+			return contractorValue.toLowerCase().startsWith(searchString.toLowerCase());
+		}
+		throw new InsightError(`Invalid pattern format: ${pattern}`);
 	}
 
 	private applyLogicalOperator(

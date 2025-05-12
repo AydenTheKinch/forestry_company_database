@@ -1,14 +1,33 @@
-import { Contractor } from "../controller/IDatabaseFacade.ts";  
+//import { Contractor } from "../controller/IDatabaseFacade";  
 import XLSX from 'xlsx';
-import config from '../config/config.ts';  
+//import config from '../config/config';
+import fs from 'fs';
+
+interface Contractor {
+    companyName: string;
+    city: string;
+    province: string;
+    postal_code: string;
+    size: string;
+    operations: string[];
+    status: string;
+    founded: string;
+    capacity: string;
+    address: string;
+    phone: string;
+    website: string;
+    lat: number;
+    lon: number;
+}
 
 export default class DataProcessor {
 	private filepath: string;
 	private contractors: Contractor[];
 
 	constructor() {
-		this.filepath = config.paths.database;
+		this.filepath = "../data/TestSubset.xlsx";
 		this.contractors = this.processData(this.filepath);
+		this.saveToJson(); 
 	}
 
 	private processOperations(operation: string): string[] {
@@ -45,8 +64,8 @@ export default class DataProcessor {
 					founded: row['Founded'],
 					capacity: row['Capacity'],
 					address: row['Address'],
-					phone: row['Phone'],
-					website: row['Website'],
+					phone: row['Fone'],
+					website: row['WEBSITE LINK'],
 					lat: row['lat'],
 					lon: row['lon']
 				};
@@ -57,6 +76,11 @@ export default class DataProcessor {
 		}
 
 		return fileContents;
+	}
+
+	private saveToJson(): void {
+		const jsonData = JSON.stringify(this.contractors, null, 2);
+		fs.writeFileSync('../data/contractors.json', jsonData);
 	}
 
 	public getContractors() {

@@ -17,27 +17,9 @@ export interface Contractor {
 
 export type DatabaseResult = Record<string, string | number>;
 
-// export class DatabaseError extends Error {
-// 	constructor(message?: string) {
-// 		super(message);
-// 		Error.captureStackTrace(this, InsightError);
-// 	}
-// }
-
-// export class NotFoundError extends Error {
-// 	constructor(message?: string) {
-// 		super(message);
-// 		Error.captureStackTrace(this, NotFoundError);
-// 	}
-// }
-
-// export class ResultTooLargeError extends Error {
-// 	constructor(message?: string) {
-// 		super(message);
-// 		Error.captureStackTrace(this, ResultTooLargeError);
-// 	}
-// }
-
 export interface IDatabaseFacade {
     performQuery(query: unknown): Promise<DatabaseResult[]>;
 }
+
+// Make sure Contractor is explicitly exported
+export type { Contractor };

@@ -1,6 +1,6 @@
 import { Contractor } from "../containers/ContractorRegistryData";
 import { SortableTableHeader } from "./ResultsTable.SortableTableHeader";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, MapPin } from "lucide-react";
 
 interface ResultsTableProps {
   filteredData: Contractor[];
@@ -39,7 +39,7 @@ export const ResultsTable: React.FC<ResultsTableProps> = ({
                 sortDirection={sortDirection}
                 onSort={handleSort}
               />
-              <th className="px-4 py-3">Status</th>
+              <th className="px-4 py-3">Map</th>
               <th className="px-4 py-3">Operations</th>
               <SortableTableHeader 
                 field="size"
@@ -49,6 +49,7 @@ export const ResultsTable: React.FC<ResultsTableProps> = ({
                 onSort={handleSort}
               />
               <th className="px-4 py-3">Website</th>
+              <th className="px-4 py-3">Telephone</th>
             </tr>
           </thead>
           <tbody>
@@ -59,22 +60,24 @@ export const ResultsTable: React.FC<ResultsTableProps> = ({
             ) : (
               filteredData.map(contractor => (
                 <tr key={contractor.id} className="border-b hover:bg-gray-50">
-                  <td className="px-4 py-3">
-                    {contractor.lat && contractor.lon ? (
-                      <button
-                        onClick={() => handleCityClick(contractor)}
-                        className="text-blue-600 hover:underline cursor-pointer"
-                        title="Click to view on map"
-                      >
-                        {contractor.companyName}
-                      </button>
-                    ) : "N/A"
-                  }
-                  </td>
+                  <td className="px-4 py-3 font-medium">{contractor.companyName}</td>
                   <td className="px-4 py-3 font-medium">
                     {contractor.city}
                   </td>
-                  <td className="px-4 py-3 font-medium">{contractor.status}</td>
+                  <td className="px-4 py-3"> 
+                    {contractor.lat && contractor.lon ? (
+                      <button
+                        onClick={() => handleCityClick(contractor)}
+                        className="inline-flex items-center gap-2 px-3 py-1 text-sm text-blue-600 hover:text-blue-800 bg-blue-50 hover:bg-blue-100 rounded-full transition-colors duration-200"
+                        title="View on map"
+                      >
+                        <MapPin className="w-4 h-4" />
+                        <span>View on Map</span>
+                      </button>
+                    ) : (
+                      <span className="text-gray-400 text-sm">No location</span>
+                    )}
+                  </td>
                   <td className="px-4 py-3">
                     {contractor.operations.length > 0 ? (
                       <ul className="list-disc pl-4">
@@ -92,6 +95,7 @@ export const ResultsTable: React.FC<ResultsTableProps> = ({
                       </a>
                     ) : "N/A"}
                   </td>
+                  <td className="px-4 py-3 font-medium">{contractor.phone}</td>
                 </tr>
               ))
             )}

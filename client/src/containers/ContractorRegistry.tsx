@@ -133,6 +133,7 @@ const ContractorRegistry: React.FC = () => {
 
   const handleCityClick = (contractor: Contractor) => {
     setSelectedContractor(contractor);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (

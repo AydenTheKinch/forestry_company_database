@@ -3,19 +3,18 @@ import XLSX from 'xlsx';
 //import config from '../config/config';
 import fs from 'fs';
 
-interface Contractor {
+export interface Contractor {
+    id: number;
     companyName: string;
-    city: string;
-    province: string;
-    postal_code: string;
-    size: string;
     operations: string[];
-    status: string;
-    founded: string;
-    capacity: string;
-    address: string;
-    phone: string;
+    equipment: string[];
+    models: string[];
+    city: string;
+    region: string;
     website: string;
+    phone: string;
+    address: string;
+	province: string;
     lat: number;
     lon: number;
 }
@@ -25,7 +24,7 @@ export default class DataProcessor {
 	private contractors: Contractor[];
 
 	constructor() {
-		this.filepath = "../data/TestSubset.xlsx";
+		this.filepath = "../data/The 22 1.xlsx";
 		this.contractors = this.processData(this.filepath);
 		this.saveToJson(); 
 	}
@@ -49,29 +48,30 @@ export default class DataProcessor {
 				return fileContents;
 			}
 
+			let id = 1;
 			for(let row of data) {
+				// Skip rows without a company name
+				if (!row['Contractors name']) continue;
+
 				const newContractor: Contractor = {
-					companyName: row['Field Name'],
-					city: row['City'],
-					province: row['Province'],
-					postal_code: row['Postal code'],
-					size: row['Size'],
-					operations: [
-						...this.processOperations(row['Type of operations 1']),
-						...this.processOperations(row['Type of operations 2'])
-					],
-					status: row['Status'],
-					founded: row['Founded'],
-					capacity: row['Capacity'],
-					address: row['Address'],
-					phone: row['Fone'],
-					website: row['WEBSITE LINK'],
-					lat: row['lat'],
-					lon: row['lon']
+					id: id++,
+					companyName: row['Contractors name'],
+					operations: this.processOperations(row['Type of operations']),
+					equipment: this.processOperations(row['Equipment']),
+					models: this.processOperations(row['Models']),
+					city: row['City'] || '',
+					region: row['Region'] || '',
+					website: row['Website'] || '',
+					phone: row['Telephone'] || '',
+					address: row['Address'] || '',
+					province: 'BC',
+					lat: row['lat'] || 0,
+					lon: row['lon'] || 0
 				};
 				fileContents.push(newContractor);
 			}
-		} catch {
+		} catch (error) {
+			console.error('Error processing data:', error);
 			throw new Error("Failed to load database.");
 		}
 

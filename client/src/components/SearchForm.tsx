@@ -1,5 +1,5 @@
 import { Search, ChevronDown, ChevronUp } from 'lucide-react';
-import { sizes, statuses } from '../containers/ContractorRegistryData';
+import { operationTypes, equipmentTypes } from '../containers/ContractorRegistryData';
 import { FilterState } from '../containers/ContractorRegistry'
 import { FormInput } from "./SearchForm.FormInput"
 import { FormSelect } from './SearchForm.FormSelect';
@@ -65,8 +65,26 @@ export const SearchForm: React.FC<SearchFormProps> = ({
                 name="companyName"
                 value={filters.companyName}
                 onChange={handleChange}
-                label="Contractor name"
-                placeholder="Enter company name"
+                label="Contractor Name"
+                placeholder="Enter contractor name"
+              />
+              
+              <FormSelect 
+                id="operations"
+                name="operations"
+                value={filters.operations}
+                onChange={handleChange}
+                label="Operations"
+                options={operationTypes}
+              />
+
+              <FormSelect 
+                id="equipment"
+                name="equipment"
+                value={filters.equipment}
+                onChange={handleChange}
+                label="Equipment"
+                options={equipmentTypes}
               />
               
               <FormInput 
@@ -77,32 +95,14 @@ export const SearchForm: React.FC<SearchFormProps> = ({
                 label="City"
                 placeholder="Enter city"
               />
-              
-              <FormSelect
-                id="size"
-                name="size"
-                value={filters.size}
-                onChange={handleChange}
-                label="Size"
-                options={sizes}
-              />
 
-              <FormSelect
-                id="status"
-                name="status"
-                value={filters.status}
+              <FormInput 
+                id="region"
+                name="region"
+                value={filters.region}
                 onChange={handleChange}
-                label="Status"
-                options={statuses}
-              />
-              
-              <FormInput
-                id="operation"
-                name="operation"
-                value={filters.operation}
-                onChange={handleChange}
-                label="Operation Type"
-                placeholder="Enter operation"
+                label="Region"
+                placeholder="Enter region"
               />
             </div>
           )}

@@ -1,6 +1,6 @@
 import XLSX from 'xlsx';
 import axios from 'axios';
-import { config } from '../config/config';
+//import { config } from '../config/config';
 
 // Interfaces
 interface GeocodedData extends Record<string, any> {
@@ -17,11 +17,15 @@ interface NominatimResponse {
 
 // Helper functions
 function buildSearchQuery(rowData: Record<string, any>): string | null {
-  const parts = [rowData['Address'], rowData['City'], rowData['Province']]
-    .filter(part => part)
-    .join(', ');
+  // if (rowData[`Province`]) {
+  //   const parts = [rowData['Address'], rowData['City'], rowData['Province']]
+  //     .filter(part => part)
+  //     .join(', ');
   
-  return parts ? parts + (rowData['Postal code'] ? ` ${rowData['Postal code']}` : '') : null;
+  //   return parts ? parts + (rowData['Postal code'] ? ` ${rowData['Postal code']}` : '') : null;
+  // } else {
+    return rowData['Address']
+  //}
 }
 
 async function fetchGeocodingData(searchQuery: string): Promise<NominatimResponse | null> {
@@ -32,11 +36,11 @@ async function fetchGeocodingData(searchQuery: string): Promise<NominatimRespons
       limit: 1
     },
     headers: {
-      'User-Agent': config.api.userAgent
+      'User-Agent': `ForestryDatabase aydenkinchla@gmail.com`
     }
   });
   
-  await new Promise(resolve => setTimeout(resolve, config.api.nominatimDelay));
+  await new Promise(resolve => setTimeout(resolve, 1000));
   return response.data?.[0] || null;
 }
 
@@ -165,4 +169,4 @@ async function runGeocoding(inputFilePath: string): Promise<string | null> {
 // Export functions for potential module usage
 export { geocodeAddress, processExcelFile, runGeocoding };
 
-runGeocoding("../data/Forestry Contractor Database.xlsx");
+runGeocoding("../data/The 22 1.xlsx");

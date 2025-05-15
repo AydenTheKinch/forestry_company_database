@@ -10,8 +10,9 @@ import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 let DefaultIcon = L.icon({
   iconUrl: icon,
   shadowUrl: iconShadow,
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
+  iconSize: [25, 41],    // Width: 25px, Height: 41px
+  iconAnchor: [12, 41],  // Anchor point is bottom middle of pin
+  popupAnchor: [0, -41]  // Popup should appear above pin, so negative height
 });
 
 L.Marker.prototype.options.icon = DefaultIcon;
@@ -70,7 +71,10 @@ export const ContractorMap: React.FC<ContractorMapProps> = ({
               <strong>${contractor.companyName}</strong><br>
               ${contractor.city}, ${contractor.province}<br>
               ${contractor.address || ''}
-            `);
+            `, {
+              offset: [0, -30], // Offset popup 30 pixels above the pin
+              closeButton: false // Optional: removes the close button for a cleaner look
+            });
           
           marker.on('click', () => {
             onContractorSelect(contractor);

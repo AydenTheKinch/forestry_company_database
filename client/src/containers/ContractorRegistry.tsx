@@ -1,28 +1,27 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { contractorData, Contractor } from './ContractorRegistryData';
 import { SearchForm } from '../components/SearchForm';
 import { ContractorMap } from '../components/Map'; 
 import { ResultsTable } from '../components/ResultsTable';
-import { searchContractors } from '../services/ContractorAPI';
 import './ContractorRegistry.css';
 
 export interface FilterState {
   keyword: string;
   companyName: string;
+  operations: string;
+  equipment: string;
   city: string;
-  size: string;
-  status: string;
-  operation: string;
+  region: string;
 }
 
 const ContractorRegistry: React.FC = () => {
   const [filters, setFilters] = useState<FilterState>({
     keyword: "",
     companyName: "",
+    operations: "",
+    equipment: "",
     city: "",
-    size: "",
-    status: "",
-    operation: ""
+    region: ""
   });
   const [filteredData, setFilteredData] = useState<Contractor[]>(contractorData);
   const [showResults, setShowResults] = useState<boolean>(false);
@@ -30,22 +29,12 @@ const ContractorRegistry: React.FC = () => {
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc");
   const [showAdvanced, setShowAdvanced] = useState<boolean>(false);
   const [selectedContractor, setSelectedContractor] = useState<Contractor | null>(null);
+  const mapSectionRef = useRef<HTMLDivElement>(null);
   
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFilters({ ...filters, [name]: value });
   };
-
-  // const handleSearch = async () => {
-  //   try {
-  //       const results = await searchContractors(filters, sortField, sortDirection);
-  //       setFilteredData(results);
-  //       setShowResults(true);
-  //   } catch (error) {
-  //       console.error('Search failed:', error);
-  //       // Add error handling UI as needed
-  //   }
-  // };
 
   const handleSearch = () => {
     let results = contractorData.filter(contractor => {
@@ -55,9 +44,10 @@ const ContractorRegistry: React.FC = () => {
         const matchesKeyword = 
           contractor.companyName.toLowerCase().includes(keyword) ||
           contractor.city.toLowerCase().includes(keyword) ||
-          contractor.address.toLowerCase().includes(keyword) ||
-          contractor.status.toLowerCase().includes(keyword) ||
-          contractor.operations.some(o => o.toLowerCase().includes(keyword));
+          contractor.region.toLowerCase().includes(keyword) ||
+          contractor.operations.some(o => o.toLowerCase().includes(keyword)) ||
+          contractor.equipment.some(e => e.toLowerCase().includes(keyword));
+          contractor.models.some(m => m.toLowerCase().includes(keyword));
           
         if (!matchesKeyword) return false;
       }
@@ -70,16 +60,16 @@ const ContractorRegistry: React.FC = () => {
       if (filters.city && !contractor.city.toLowerCase().includes(filters.city.toLowerCase())) {
         return false;
       }
+
+      if (filters.region && !contractor.region.toLowerCase().includes(filters.region.toLowerCase())) {
+        return false;
+      }
       
-      if (filters.size && contractor.size !== filters.size) {
+      if (filters.operations && !contractor.operations.some(o => o.toLowerCase().includes(filters.operations.toLowerCase()))) {
         return false;
       }
 
-      if (filters.status && contractor.status !== filters.status) {
-        return false;
-      }
-      
-      if (filters.operation && !contractor.operations.some(o => o.toLowerCase().includes(filters.operation.toLowerCase()))) {
+      if (filters.equipment && !contractor.equipment.some(e => e.toLowerCase().includes(filters.equipment.toLowerCase()))) {
         return false;
       }
       
@@ -122,10 +112,10 @@ const ContractorRegistry: React.FC = () => {
     setFilters({
       keyword: "",
       companyName: "",
+      operations: "",
+      equipment: "",
       city: "",
-      size: "",
-      status: "",
-      operation: ""
+      region: ""
     });
     setShowResults(false);
     setSelectedContractor(null);
@@ -133,15 +123,40 @@ const ContractorRegistry: React.FC = () => {
 
   const handleCityClick = (contractor: Contractor) => {
     setSelectedContractor(contractor);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (mapSectionRef.current) {
+      mapSectionRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (
     <div className="contractor-registry-container">
-      <h1 className="title">Logging Contractor Registry Search</h1>
+      <div className="w-full mb-6">
+        <img 
+          src="/thumbnail_IMG_1043.jpg" 
+          alt="Forest Banner" 
+          className="w-full h-48 object-cover rounded-lg shadow-md"
+        />
+      </div>
       
+      <div className="flex items-center gap-4 mb-6">
+        <img src="/ubc-logo-2018-crest-blue-rgb72.jpg" alt="UBC Logo" className="w-16 h-auto" />
+        <h1 className="title text-2xl font-bold">Thinning Contractor Registry</h1>
+      </div>
+
+      <div className="bg-white p-6 rounded-lg shadow-sm mb-8 text-left max-w-4xl">
+        <h2 className="text-xl font-semibold mb-3">About the Registry</h2>
+        <p className="text-gray-600 mb-4 text-left">
+          The UBC Thinning Contractor Registry is a comprehensive database of forest management contractors 
+          operating in British Columbia. You can use the search tools to find specific contractors using general
+          keywords or make more specific queries under the "advanced search" tab. 
+        </p>
+        <p className="text-gray-600 text-left">
+          Contractors will also be shown on the interactive map if there addresses are included, allowing you to see their locations across the province.
+        </p>
+      </div>
+
       {/* Search and Map Section */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+      <div ref={mapSectionRef} className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
         {/* Search Form */}
         <SearchForm 
           filters={filters}

@@ -49,13 +49,13 @@ function buildWhereClause(filters: FilterState) {
         conditions.push({ IS: { city: `*${filters.city}*` } });
     }
 
-    if (filters.size) {
-        conditions.push({ IS: { size: filters.size } });
-    }
+    // if (filters.size) {
+    //     conditions.push({ IS: { size: filters.size } });
+    // }
 
-    if (filters.operation) {
-        conditions.push({ IS: { operations: `*${filters.operation}*` } });
-    }
+    // if (filters.operation) {
+    //     conditions.push({ IS: { operations: `*${filters.operation}*` } });
+    // }
 
     return conditions.length > 1 ? { AND: conditions } : conditions[0] || {};
 }

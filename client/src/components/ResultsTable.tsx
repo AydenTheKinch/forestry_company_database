@@ -32,6 +32,9 @@ export const ResultsTable: React.FC<ResultsTableProps> = ({
                 sortDirection={sortDirection}
                 onSort={handleSort}
               />
+              <th className="px-4 py-3">Operations</th>
+              <th className="px-4 py-3">Equipment</th>
+              <th className="px-4 py-3">Models</th>
               <SortableTableHeader 
                 field="city"
                 label="City"
@@ -39,17 +42,16 @@ export const ResultsTable: React.FC<ResultsTableProps> = ({
                 sortDirection={sortDirection}
                 onSort={handleSort}
               />
-              <th className="px-4 py-3">Map</th>
-              <th className="px-4 py-3">Operations</th>
               <SortableTableHeader 
-                field="size"
-                label="Size"
+                field="region"
+                label="Region"
                 currentSortField={sortField}
                 sortDirection={sortDirection}
                 onSort={handleSort}
               />
               <th className="px-4 py-3">Website</th>
               <th className="px-4 py-3">Telephone</th>
+              <th className="px-4 py-3">Address</th>
             </tr>
           </thead>
           <tbody>
@@ -60,22 +62,16 @@ export const ResultsTable: React.FC<ResultsTableProps> = ({
             ) : (
               filteredData.map(contractor => (
                 <tr key={contractor.id} className="border-b hover:bg-gray-50">
-                  <td className="px-4 py-3 font-medium">{contractor.companyName}</td>
-                  <td className="px-4 py-3 font-medium">
-                    {contractor.city}
-                  </td>
-                  <td className="px-4 py-3"> 
+                  <td className="px-4 py-3">
                     {contractor.lat && contractor.lon ? (
                       <button
                         onClick={() => handleCityClick(contractor)}
-                        className="inline-flex items-center gap-2 px-3 py-1 text-sm text-blue-600 hover:text-blue-800 bg-blue-50 hover:bg-blue-100 rounded-full transition-colors duration-200"
-                        title="View on map"
+                        className="font-medium text-left hover:text-blue-600 hover:underline"
                       >
-                        <MapPin className="w-4 h-4" />
-                        <span>View on Map</span>
+                        {contractor.companyName}
                       </button>
                     ) : (
-                      <span className="text-gray-400 text-sm">No location</span>
+                      <span className="font-medium">{contractor.companyName}</span>
                     )}
                   </td>
                   <td className="px-4 py-3">
@@ -87,7 +83,26 @@ export const ResultsTable: React.FC<ResultsTableProps> = ({
                       </ul>
                     ) : "N/A"}
                   </td>
-                  <td className="px-4 py-3">{contractor.size}</td>
+                  <td className="px-4 py-3">
+                    {contractor.equipment.length > 0 ? (
+                      <ul className="list-disc pl-4">
+                        {contractor.equipment.map((item, index) => (
+                          <li key={index}>{item}</li>
+                        ))}
+                      </ul>
+                    ) : "N/A"}
+                  </td>
+                  <td className="px-4 py-3">
+                    {contractor.models.length > 0 ? (
+                      <ul className="list-disc pl-4">
+                        {contractor.models.map((item, index) => (
+                          <li key={index}>{item}</li>
+                        ))}
+                      </ul>
+                    ) : "N/A"}
+                  </td>
+                  <td className="px-4 py-3 font-medium">{contractor.city}</td>
+                  <td className="px-4 py-3 font-medium">{contractor.region}</td>
                   <td className="px-4 py-3">
                     {contractor.website ? (
                       <a href={contractor.website} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline flex items-center">
@@ -96,6 +111,7 @@ export const ResultsTable: React.FC<ResultsTableProps> = ({
                     ) : "N/A"}
                   </td>
                   <td className="px-4 py-3 font-medium">{contractor.phone}</td>
+                  <td className="px-4 py-3 font-medium">{contractor.address}</td>
                 </tr>
               ))
             )}

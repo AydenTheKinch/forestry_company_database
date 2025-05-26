@@ -155,6 +155,15 @@ const ContractorRegistry: React.FC = () => {
         </p>
       </div>
 
+      <div className="bg-white p-6 rounded-lg shadow-sm mb-8 text-left max-w-4xl">
+        <h2 className="text-xl font-semibold mb-3">Join the Registry</h2>
+        <p className="text-gray-600 mb-4 text-left">
+          Are you a forest management contractor operating in British Columbia? Get listed in our registry!
+          Email us at <a href="mailto:forestry.registry@ubc.ca" className="text-blue-600 hover:text-blue-800 underline">
+          forestry.registry@ubc.ca</a> with your company information to be added to the database.
+        </p>
+      </div>
+
       {/* Search and Map Section */}
       <div ref={mapSectionRef} className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
         {/* Search Form */}

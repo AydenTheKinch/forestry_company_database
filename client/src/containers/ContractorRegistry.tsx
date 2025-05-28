@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { contractorData, Contractor } from './ContractorRegistryData';
+import { Contractor } from './ContractorRegistryData';
 import { SearchForm } from '../components/SearchForm';
 import { ContractorMap } from '../components/Map'; 
 import { ResultsTable } from '../components/ResultsTable';
+import { searchContractors } from '../services/ContractorAPI';
 import './ContractorRegistry.css';
 
 export interface FilterState {
@@ -23,7 +24,7 @@ const ContractorRegistry: React.FC = () => {
     city: "",
     region: ""
   });
-  const [filteredData, setFilteredData] = useState<Contractor[]>(contractorData);
+  const [filteredData, setFilteredData] = useState<Contractor[]>([]);
   const [showResults, setShowResults] = useState<boolean>(false);
   const [sortField, setSortField] = useState<keyof Contractor>("companyName");
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc");
@@ -36,61 +37,14 @@ const ContractorRegistry: React.FC = () => {
     setFilters({ ...filters, [name]: value });
   };
 
-  const handleSearch = () => {
-    let results = contractorData.filter(contractor => {
-      // Basic keyword search across multiple fields
-      if (filters.keyword) {
-        const keyword = filters.keyword.toLowerCase();
-        const matchesKeyword = 
-          contractor.companyName.toLowerCase().includes(keyword) ||
-          contractor.city.toLowerCase().includes(keyword) ||
-          contractor.region.toLowerCase().includes(keyword) ||
-          contractor.operations.some(o => o.toLowerCase().includes(keyword)) ||
-          contractor.equipment.some(e => e.toLowerCase().includes(keyword));
-          contractor.models.some(m => m.toLowerCase().includes(keyword));
-          
-        if (!matchesKeyword) return false;
-      }
-      
-      // Specific field filters      
-      if (filters.companyName && !contractor.companyName.toLowerCase().includes(filters.companyName.toLowerCase())) {
-        return false;
-      }
-      
-      if (filters.city && !contractor.city.toLowerCase().includes(filters.city.toLowerCase())) {
-        return false;
-      }
-
-      if (filters.region && !contractor.region.toLowerCase().includes(filters.region.toLowerCase())) {
-        return false;
-      }
-      
-      if (filters.operations && !contractor.operations.some(o => o.toLowerCase().includes(filters.operations.toLowerCase()))) {
-        return false;
-      }
-
-      if (filters.equipment && !contractor.equipment.some(e => e.toLowerCase().includes(filters.equipment.toLowerCase()))) {
-        return false;
-      }
-      
-      return true;
-    });
-    
-    // Sort the results
-    results.sort((a, b) => {
-      const aValue = a[sortField] || "";
-      const bValue = b[sortField] || "";
-      
-      if (typeof aValue === 'string' && typeof bValue === 'string') {
-        return sortDirection === "asc" 
-          ? aValue.localeCompare(bValue)
-          : bValue.localeCompare(aValue);
-      }
-      return 0;
-    });
-    
-    setFilteredData(results);
-    setShowResults(true);
+  const handleSearch = async () => {
+    try {
+        const results = await searchContractors(filters, sortField, sortDirection);
+        setFilteredData(results);
+        setShowResults(true);
+    } catch (error) {
+        console.error('Search failed:', error);
+    }
   };
 
   const handleSort = (field: keyof Contractor) => {
@@ -155,15 +109,6 @@ const ContractorRegistry: React.FC = () => {
         </p>
       </div>
 
-      <div className="bg-white p-6 rounded-lg shadow-sm mb-8 text-left max-w-4xl">
-        <h2 className="text-xl font-semibold mb-3">Join the Registry</h2>
-        <p className="text-gray-600 mb-4 text-left">
-          Are you a forest management contractor operating in British Columbia? Get listed in our registry!
-          Email us at <a href="mailto:forestry.registry@ubc.ca" className="text-blue-600 hover:text-blue-800 underline">
-          forestry.registry@ubc.ca</a> with your company information to be added to the database.
-        </p>
-      </div>
-
       {/* Search and Map Section */}
       <div ref={mapSectionRef} className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
         {/* Search Form */}
@@ -194,6 +139,15 @@ const ContractorRegistry: React.FC = () => {
           handleCityClick={handleCityClick}
         />
       )}
+
+      <div className="bg-white p-6 rounded-lg shadow-sm mt-12 text-left max-w-4xl mx-auto">
+        <h2 className="text-xl font-semibold mb-3">Join the Registry</h2>
+        <p className="text-gray-600 mb-4 text-left">
+          Are you a forest management contractor operating in British Columbia? Get listed in our registry!
+          Email us at <a href="mailto:forestry.registry@ubc.ca" className="text-blue-600 hover:text-blue-800 underline">
+          forestry.registry@ubc.ca</a> with your company information to be added to the database.
+        </p>
+      </div>
     </div>
   );
 };

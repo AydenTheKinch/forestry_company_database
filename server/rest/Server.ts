@@ -1,14 +1,14 @@
 import express, { Application, Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
-import ataFacade from "../controller/IDatasetFacade";
+import { DatabaseFacade } from "../controller/DatabaseFacade";
 import * as http from "http";
 import cors from "cors";
 
-export default class Server {
+export class Server {
 	private readonly port: number;
 	private express: Application;
 	private server: http.Server | undefined;
-	private static controller: DatasetFacade = new DatasetFacade();
+	private static controller: DatabaseFacade = new DatabaseFacade();
 
 	constructor(port: number) {
 		console.log(`Server::<init>( ${port} )`);
@@ -17,11 +17,6 @@ export default class Server {
 
 		this.registerMiddleware();
 		this.registerRoutes();
-
-		// NOTE: you can serve static frontend files in from your express server
-		// by uncommenting the line below. This makes files in ./frontend/public
-		// accessible at http://localhost:<port>/
-		// this.express.use(express.static("./frontend/public"))
 	}
 
 	/**
@@ -32,6 +27,7 @@ export default class Server {
 	 * @returns {Promise<void>}
 	 */
 	public async start(): Promise<void> {
+		await Server.controller.initialize();
 		return new Promise((resolve, reject) => {
 			console.log("Server::start() - start");
 			if (this.server !== undefined) {
@@ -79,7 +75,9 @@ export default class Server {
 		this.express.use(express.json());
 		this.express.use(express.raw({ type: "application/*", limit: "10mb" }));
 
-		// enable cors in request headers to allow cross-origin HTTP requests
+		// Enable CORS to allow cross-origin requests from the frontend application
+		// This is necessary when your frontend and backend are running on different ports/domains
+		// For example: frontend on localhost:3000 accessing backend on localhost:4321
 		this.express.use(cors());
 	}
 
@@ -96,7 +94,11 @@ export default class Server {
 			const response = await Server.controller.performQuery(req.body);
 			res.status(StatusCodes.OK).json({ result: response });
 		} catch (err) {
-			res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ error: "An unexpected error occurred" });
+			console.error("Server::query - Error:", err);
+			res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+				error: "An unexpected error occurred",
+				details: err instanceof Error ? err.message : "Unknown error",
+			});
 		}
 	}
 }

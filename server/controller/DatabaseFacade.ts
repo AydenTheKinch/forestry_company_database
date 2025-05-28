@@ -1,18 +1,29 @@
-import {
-	Contractor,
-	IDatabaseFacade,
-	DatabaseResult
-} from "./IDatabaseFacade";
-//import JSZip from "jszip";
-import DataProcessor from "../database/DataProcessor";
-import QueryEngine from "../query/QueryEngine";
-import config from '../config/config';
+import { DataProcessor } from "../service/DataProcessor";
+import { GeoCache } from "../service/GeoCache";
+import { QueryEngine } from "../query/QueryEngine";
 
-export default class DatabaseFacade implements IDatabaseFacade {
+export class DatabaseFacade {
 	private dataProcessor: DataProcessor;
+	private geocache: GeoCache;
+	private isInitialized: boolean = false;
+	private readonly dbPath: string = "C:/Users/ayden/Coding Projects/ForestryOnlineDatabase/server/data/The 22 1.xlsx";
 
 	constructor() {
-		this.dataProcessor = new DataProcessor();
+		this.geocache = new GeoCache(this.dbPath);
+		this.dataProcessor = new DataProcessor(this.dbPath);
+	}
+
+	public async initialize(): Promise<void> {
+		if (!this.isInitialized) {
+			try {
+				await this.geocache.initialize();
+				await this.dataProcessor.getContractors();
+				this.isInitialized = true;
+			} catch (error) {
+				console.error("DatabaseFacade::initialize - Failed to initialize services:", error);
+				throw error;
+			}
+		}
 	}
 
 	/**
@@ -25,9 +36,28 @@ export default class DatabaseFacade implements IDatabaseFacade {
 	/**
 	 * Performs query on contractor data
 	 */
-	public async performQuery(query: unknown): Promise<DatabaseResult[]> {
-		const contractors = await this.loadDataset();
+	public async performQuery(query: unknown): Promise<Contractor[]> {
+		if (!this.isInitialized) {
+			await this.initialize();
+		}
+		const contractors = await this.dataProcessor.getContractors();
 		const engine = new QueryEngine(query, contractors);
 		return engine.returnContractors();
 	}
+}
+
+export interface Contractor {
+    id: number;
+    companyName: string;
+    operations: string[];
+    equipment: string[];
+    models: string[];
+    city: string;
+    region: string;
+    province: string;
+    website: string;
+    phone: string;
+    address: string;
+    lat: number;
+    lon: number;
 }

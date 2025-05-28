@@ -1,35 +1,61 @@
-import QueryValidator from "./QueryValidator.js";
-import QueryRenderer from "./QueryRenderer.js";
-import QueryFilterer from "./QueryFilterer.js";
-import {
-	Contractor,
-	DatabaseResult
-} from "../controller/IDatabaseFacade.js";
+import { QueryFilterer } from "./QueryFilterer.js";
+import { Contractor } from "../controller/DatabaseFacade.js";
 
-export default class QueryEngine {
-	private readonly jsonQuery: any;
-	private readonly contractors: Contractor[];
-	private validator: QueryValidator;
-	private maxResults: number = 5000;
+export interface ContractorQuery {
+	companyName: string;
+	city: string;
+	region: string;
+	operations: string;
+	equipment: string;
+	models: string;
+} 
 
-	constructor(query: any, contractors: Contractor[]) {
-		this.validator = new QueryValidator(query);
-		if (!this.validator.validateQuery()) throw new Error("Query is not valid!");
-		this.jsonQuery = this.validator.getQuery();
-		this.contractors = contractors;
-	}
+const requiredFields: (keyof ContractorQuery)[] = [
+	'companyName',
+	'city',
+	'region',
+	'operations',
+	'equipment',
+	'models'
+];
 
-	public returnContractors(): DatabaseResult[] {
-		const filteredSections = this.filterContractors(this.contractors);
-		const renderer = new QueryRenderer(this.jsonQuery, filteredSections);
-		return renderer.getOutput();
-	}
+export class QueryEngine {
+    private readonly validatedquery: ContractorQuery;
+    private readonly contractors: Contractor[];
 
-	public filterContractors(contractors: Contractor[]): Contractor[] {
-		if (!this.jsonQuery || typeof this.jsonQuery !== "object") {
-			throw new Error("Invalid query structure");
-		}
-		const filterer = new QueryFilterer(contractors, this.jsonQuery.WHERE);
-		return filterer.getFilteredContractors();
-	}
+    constructor(query: any, contractors: Contractor[]) {
+        this.validatedquery = this.validateQuery(query);
+        this.contractors = contractors;
+    }
+
+    public returnContractors(): Contractor[] {
+        const filteredContractors = this.filterContractors();
+        return filteredContractors;
+    }
+
+    private validateQuery(query: any): ContractorQuery {
+        if (!query || typeof query !== 'object') {
+            throw new Error("Query must be an object");
+        }
+
+        for (const field of requiredFields) {
+            if (!(field in query) || typeof query[field] !== 'string') {
+                throw new Error(`Missing or invalid ${field} field`);
+            }
+        }
+
+        return {
+            companyName: query.companyName,
+            city: query.city,
+            region: query.region,
+            operations: query.operations,
+            equipment: query.equipment,
+            models: query.models
+        };
+    }
+
+    private filterContractors(): Contractor[] {
+        const filterer = new QueryFilterer(this.contractors, this.validatedquery);
+        return filterer.getFilteredContractors();
+    }
 }

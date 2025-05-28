@@ -1,4 +1,4 @@
-import Server from "./rest/Server";
+import { Server } from "./rest/Server.ts";
 
 /**
  * Main app class that is run with the node command. Starts the server.
@@ -8,14 +8,13 @@ export class App {
 		console.log(`App::initServer( ${port} ) - start`);
 
 		const server = new Server(port);
-		return server
-			.start()
-			.then(() => {
-				console.log("App::initServer() - started");
-			})
-			.catch((err: Error) => {
-				console.log(`App::initServer() - ERROR: ${err.message}`);
-			});
+		try {
+			await server.start();
+			console.log("App::initServer() - started");
+		} catch (err: any) {
+			console.error(`App::initServer() - ERROR: ${err.message}`);
+			process.exit(1);
+		}
 	}
 }
 

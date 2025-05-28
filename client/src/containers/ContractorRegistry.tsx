@@ -112,7 +112,7 @@ const ContractorRegistry: React.FC = () => {
       <div className="bg-white p-6 rounded-lg shadow-sm mb-8 text-left max-w-4xl">
         <h2 className="text-xl font-semibold mb-3">About the Registry</h2>
         <p className="text-gray-600 mb-4 text-left">
-          The UBC Thinning Contractor Registry is a comprehensive database of forest management contractors 
+          The UBC Thinning Contractor Registry is a comprehensive database of forestry contractors 
           operating in British Columbia. You can use the search tools to find specific contractors using general
           keywords or make more specific queries under the "advanced search" tab. 
         </p>
@@ -155,9 +155,9 @@ const ContractorRegistry: React.FC = () => {
       <div className="bg-white p-6 rounded-lg shadow-sm mt-12 text-left max-w-4xl mx-auto">
         <h2 className="text-xl font-semibold mb-3">Join the Registry</h2>
         <p className="text-gray-600 mb-4 text-left">
-          Are you a forest management contractor operating in British Columbia? Get listed in our registry!
+          Are you a forestry contractor operating in British Columbia? 
           Email us at <a href="mailto:forestry.registry@ubc.ca" className="text-blue-600 hover:text-blue-800 underline">
-          forestry.registry@ubc.ca</a> with your company information to be added to the database.
+          forestry.registry@ubc.ca</a> with your company information to be added to the database!
         </p>
       </div>
     </div>

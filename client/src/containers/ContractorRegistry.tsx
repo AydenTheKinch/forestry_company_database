@@ -117,7 +117,7 @@ const ContractorRegistry: React.FC = () => {
           keywords or make more specific queries under the "advanced search" tab. 
         </p>
         <p className="text-gray-600 text-left">
-          Contractors will also be shown on the interactive map if there addresses are included, allowing you to see their locations across the province.
+          Contractors will also be shown on the interactive map if their addresses are included, allowing you to see their locations across the province.
         </p>
       </div>
 

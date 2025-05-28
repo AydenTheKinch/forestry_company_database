@@ -39,28 +39,40 @@ const ContractorRegistry: React.FC = () => {
 
   const handleSearch = async () => {
     try {
-        const results = await searchContractors(filters, sortField, sortDirection);
-        setFilteredData(results);
-        setShowResults(true);
+      const results = await searchContractors(filters, sortField, sortDirection);
+      setFilteredData(results);
+      setShowResults(true);
     } catch (error) {
-        console.error('Search failed:', error);
+      console.error('Search failed:', error);
     }
   };
 
   const handleSort = (field: keyof Contractor) => {
-    if (field === sortField) {
-      setSortDirection(sortDirection === "asc" ? "desc" : "asc");
-    } else {
-      setSortField(field);
-      setSortDirection("asc");
-    }
-  };
+    const newDirection = field === sortField 
+      ? sortDirection === "asc" ? "desc" : "asc"
+      : "asc";
+    
+    setSortField(field);
+    setSortDirection(newDirection);
 
-  useEffect(() => {
-    if (showResults) {
-      handleSearch();
-    }
-  }, [sortField, sortDirection]);
+    // Sort the current filtered data
+    const sortedData = [...filteredData].sort((a, b) => {
+      const aVal = a[field];
+      const bVal = b[field];
+      
+      if (Array.isArray(aVal) && Array.isArray(bVal)) {
+        return newDirection === "asc" 
+          ? aVal.join().localeCompare(bVal.join())
+          : bVal.join().localeCompare(aVal.join());
+      }
+      
+      return newDirection === "asc"
+        ? String(aVal).localeCompare(String(bVal))
+        : String(bVal).localeCompare(String(aVal));
+    });
+
+    setFilteredData(sortedData);
+  };
 
   const handleClear = () => {
     setFilters({

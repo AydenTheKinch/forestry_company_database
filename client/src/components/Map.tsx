@@ -1,4 +1,4 @@
-import { Contractor } from "../containers/ContractorRegistryData";
+import { Contractor } from "../types/ContractorRegistryData";
 import React, { useEffect, useRef } from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';

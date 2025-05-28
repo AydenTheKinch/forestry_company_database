@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Contractor } from './ContractorRegistryData';
+import { Contractor } from '../types/ContractorRegistryData';
 import { SearchForm } from '../components/SearchForm';
 import { ContractorMap } from '../components/Map'; 
 import { ResultsTable } from '../components/ResultsTable';

@@ -1,5 +1,5 @@
 import { Search, ChevronDown, ChevronUp } from 'lucide-react';
-import { operationTypes, equipmentTypes } from '../containers/ContractorRegistryData';
+import { operationTypes, equipmentTypes } from '../types/ContractorRegistryData';
 import { FilterState } from '../containers/ContractorRegistry'
 import { FormInput } from "./SearchForm.FormInput"
 import { FormSelect } from './SearchForm.FormSelect';

@@ -1,4 +1,4 @@
-import { Contractor } from "../containers/ContractorRegistryData";
+import { Contractor } from "../types/ContractorRegistryData";
 import { SortableTableHeader } from "./ResultsTable.SortableTableHeader";
 import { ExternalLink, MapPin } from "lucide-react";
 

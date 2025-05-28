@@ -1,4 +1,4 @@
-import { Contractor } from "../containers/ContractorRegistryData";
+import { Contractor } from "../types/ContractorRegistryData";
 import { ChevronDown, ChevronUp}  from 'lucide-react';
 
 interface SortableTableHeaderProps {

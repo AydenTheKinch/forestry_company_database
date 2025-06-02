@@ -12,7 +12,7 @@ let DefaultIcon = L.icon({
   shadowUrl: iconShadow,
   iconSize: [25, 41],    // Width: 25px, Height: 41px
   iconAnchor: [12, 41],  // Anchor point is bottom middle of pin
-  popupAnchor: [0, -41]  // Popup should appear above pin, so negative height
+  popupAnchor: [0, -15]  
 });
 
 L.Marker.prototype.options.icon = DefaultIcon;
@@ -72,7 +72,7 @@ export const ContractorMap: React.FC<ContractorMapProps> = ({
               ${contractor.city}, ${contractor.province}<br>
               ${contractor.address || ''}
             `, {
-              offset: [0, -30], // Offset popup 30 pixels above the pin
+              offset: [0, -20], // Reduced from -30 to -20
               closeButton: false // Optional: removes the close button for a cleaner look
             });
           

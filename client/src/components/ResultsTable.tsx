@@ -51,7 +51,7 @@ export const ResultsTable: React.FC<ResultsTableProps> = ({
               />
               <th className="px-4 py-3">Website</th>
               <th className="px-4 py-3">Telephone</th>
-              <th className="px-4 py-3">Address</th>
+              {/* <th className="px-4 py-3">Address</th> */}
             </tr>
           </thead>
           <tbody>
@@ -111,7 +111,7 @@ export const ResultsTable: React.FC<ResultsTableProps> = ({
                     ) : "N/A"}
                   </td>
                   <td className="px-4 py-3 font-medium">{contractor.phone}</td>
-                  <td className="px-4 py-3 font-medium">{contractor.address}</td>
+                  {/* <td className="px-4 py-3 font-medium">{contractor.address}</td> */}
                 </tr>
               ))
             )}

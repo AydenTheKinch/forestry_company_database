@@ -1,0 +1,453 @@
+[
+  {
+    "id": 1,
+    "companyName": "Sarver Wood Fibre",
+    "operations": [
+      "Thinning"
+    ],
+    "equipment": [],
+    "models": [],
+    "city": "100 Mile House",
+    "region": "Cariboo",
+    "website": "https://www.sarverwood.com/",
+    "phone": "(250) 395-1722",
+    "address": "",
+    "province": "BC",
+    "lat": 0,
+    "lon": 0
+  },
+  {
+    "id": 2,
+    "companyName": "West Chilcotin Forest Products Ltd.",
+    "operations": [
+      "Thinning"
+    ],
+    "equipment": [],
+    "models": [],
+    "city": "Anahim Lake",
+    "region": "Cariboo",
+    "website": "",
+    "phone": "(250) 742-3217",
+    "address": "21841 Chilcotin Hwy Suite 20, Anahim Lake, BC, V0L 1C0",
+    "province": "BC",
+    "lat": 52.4303452,
+    "lon": -125.431658
+  },
+  {
+    "id": 3,
+    "companyName": "Integrated Operations Group Inc.",
+    "operations": [
+      "Thinning",
+      "Fuel treatment"
+    ],
+    "equipment": [
+      "Harvester",
+      "Forwarder",
+      "Feller buncher",
+      "Truck"
+    ],
+    "models": [
+      "John Deere 1270G harvester",
+      "Ponsse Fox harvester",
+      "Ponsse Cobra harvester",
+      "Ponsse Scorpion harvester",
+      "Ponsse Buffalo forwarder",
+      "Ponsse Elephant King forwarder",
+      "John Deere 1910 forwarder",
+      "custom-built mini feller buncher",
+      "self-loading truck"
+    ],
+    "city": "Campbell River",
+    "region": "Strathcona",
+    "website": "https://www.integratedops.ca/",
+    "phone": "(250) 914-8050",
+    "address": "1950 14 Ave, Campbell River, BC V9W 4J1",
+    "province": "BC",
+    "lat": 50.0293725,
+    "lon": -125.282437
+  },
+  {
+    "id": 4,
+    "companyName": "Suncoast Logging Ltd",
+    "operations": [
+      "Thinning"
+    ],
+    "equipment": [],
+    "models": [],
+    "city": "Campbell River",
+    "region": "Strathcona",
+    "website": "https://cypresscreeklogging.com/suncoast/",
+    "phone": "(778) 560-3093",
+    "address": "870F 13th Ave, Campbell River, BC, V9W 4H2",
+    "province": "BC",
+    "lat": 50.0280845,
+    "lon": -125.2522214
+  },
+  {
+    "id": 5,
+    "companyName": "Hi-Sky Enterprises Ltd.",
+    "operations": [
+      "Thinning"
+    ],
+    "equipment": [],
+    "models": [],
+    "city": "Chetwynd",
+    "region": "Peace River",
+    "website": "",
+    "phone": "(250) 788-9181",
+    "address": "",
+    "province": "BC",
+    "lat": 0,
+    "lon": 0
+  },
+  {
+    "id": 6,
+    "companyName": "Volktrans-Canada Ltd.",
+    "operations": [
+      "Thinning"
+    ],
+    "equipment": [
+      "Harvester",
+      "Forwarder"
+    ],
+    "models": [
+      "Tigercat 1185 wheel harvester",
+      "Tigercat LH845C 33ft of reach tracked harvester"
+    ],
+    "city": "Clearwater",
+    "region": "Thomson-Nicola",
+    "website": "https://www.facebook.com/p/Volktrans-Canada-Ltd-100063781022868/",
+    "phone": "(250) 674-8856",
+    "address": "1530 Clearwater Valley Road, Clearwater, BC, V0E 1N1",
+    "province": "BC",
+    "lat": 51.7057074,
+    "lon": -120.0122514
+  },
+  {
+    "id": 7,
+    "companyName": "SKM Resources Ltd.",
+    "operations": [
+      "Thinning",
+      "Fuel treatment"
+    ],
+    "equipment": [
+      "Harvester",
+      "Forwarder"
+    ],
+    "models": [
+      "Nisula 425H harvester head attached to John Deere 75D excavator",
+      "Hyundai 55 excavator with grapple"
+    ],
+    "city": "Clearwater",
+    "region": "Thomson-Nicola",
+    "website": "https://skmresources.ca/",
+    "phone": "(250) 674-7213",
+    "address": "209 Dutch Lake Rd, Clearwater, BC, V0E 1N2",
+    "province": "BC",
+    "lat": 51.6503515,
+    "lon": -120.0654595
+  },
+  {
+    "id": 8,
+    "companyName": "Groot Bros Contracting Ltd",
+    "operations": [
+      "Thinning"
+    ],
+    "equipment": [],
+    "models": [],
+    "city": "Houston",
+    "region": "Bulkley-Nechako",
+    "website": "https://www.facebook.com/GrootBrosContracting/",
+    "phone": "(250) 845-0093",
+    "address": "1300 Morice River Rd, Houston, BC, V0J 1Z0",
+    "province": "BC",
+    "lat": 54.3908976,
+    "lon": -126.7076814
+  },
+  {
+    "id": 9,
+    "companyName": "Paxton Ridge Contracting",
+    "operations": [
+      "Thinning",
+      "Fuel treatment"
+    ],
+    "equipment": [],
+    "models": [],
+    "city": "Kamloops",
+    "region": "Thomson-Nicola",
+    "website": "https://www.paxtonridge.ca/",
+    "phone": "(250) 318-7887",
+    "address": "",
+    "province": "BC",
+    "lat": 0,
+    "lon": 0
+  },
+  {
+    "id": 10,
+    "companyName": "A.M. Anderson Ventures Ltd.",
+    "operations": [
+      "Thinning"
+    ],
+    "equipment": [
+      "Harvester",
+      "Forwarder"
+    ],
+    "models": [
+      "Malwa 560C Kombi"
+    ],
+    "city": "Prince George",
+    "region": "Fraser-Fort George",
+    "website": "https://www.facebook.com/AMAVWindyPoint/",
+    "phone": "(250) 997-7790",
+    "address": "5896 TRENT DR, Prince George, BC, V2N 2E9",
+    "province": "BC",
+    "lat": 53.8672371,
+    "lon": -122.761744
+  },
+  {
+    "id": 11,
+    "companyName": "Freya Logging Inc",
+    "operations": [
+      "Thinning"
+    ],
+    "equipment": [],
+    "models": [],
+    "city": "Prince George",
+    "region": "Fraser-Fort George",
+    "website": "https://freyaforest.com/pages/contact",
+    "phone": "(250) 674-8416",
+    "address": "11980 Cariboo Highway, Prince George, BC, V2N 6B5",
+    "province": "BC",
+    "lat": 53.8530278,
+    "lon": -122.7096907
+  },
+  {
+    "id": 12,
+    "companyName": "Frost Lake Logging Ltd",
+    "operations": [
+      "Thinning"
+    ],
+    "equipment": [],
+    "models": [],
+    "city": "Prince George",
+    "region": "Fraser-Fort George",
+    "website": "https://frostlake.ca/",
+    "phone": "(250) 562-2487",
+    "address": "32-556 N Nechako Rd, Prince George, BC, V2K 1A1",
+    "province": "BC",
+    "lat": 53.9311391,
+    "lon": -122.7821453
+  },
+  {
+    "id": 13,
+    "companyName": "Amboy Logging Ltd",
+    "operations": [
+      "Thinning"
+    ],
+    "equipment": [],
+    "models": [],
+    "city": "Quesnel",
+    "region": "Cariboo",
+    "website": "",
+    "phone": "(250) 992-8771",
+    "address": "4238 Comeau Rd Quesnel, BC, V2J 6W8",
+    "province": "BC",
+    "lat": 53.0338312,
+    "lon": -122.4855603
+  },
+  {
+    "id": 14,
+    "companyName": "Marlo Logging Ltd",
+    "operations": [
+      "Thinning"
+    ],
+    "equipment": [],
+    "models": [],
+    "city": "Quesnel",
+    "region": "Cariboo",
+    "website": "https://www.facebook.com/p/Marlo-Logging-Ltd-100035615336800/",
+    "phone": "(250) 992-8835",
+    "address": "3841 Hwy 97 N Quesnel, BC, V2J 5Z2",
+    "province": "BC",
+    "lat": 52.9965025,
+    "lon": -122.5106555
+  },
+  {
+    "id": 15,
+    "companyName": "R. Clauson Logging Ltd.",
+    "operations": [
+      "Thinning",
+      "Final harvesting"
+    ],
+    "equipment": [
+      "Harvester",
+      "Forwarder",
+      "Feller buncher",
+      "Truck"
+    ],
+    "models": [
+      "John Deere 1270 harvester",
+      "John Deere 1910 forwarder",
+      "Tigercat 870 feller buncher"
+    ],
+    "city": "Quesnel",
+    "region": "Cariboo",
+    "website": "https://www.facebook.com/p/R-Clauson-Logging-Ltd-100047778855559/",
+    "phone": "(250) 991-0211",
+    "address": "140B Carradice Rd Quesnel, BC, V2J 5Z7",
+    "province": "BC",
+    "lat": 53.0134921,
+    "lon": -122.5109681
+  },
+  {
+    "id": 16,
+    "companyName": "Shinedown Enterprises Ltd.",
+    "operations": [
+      "Thinning"
+    ],
+    "equipment": [],
+    "models": [],
+    "city": "Telka",
+    "region": "Bulkley-Nechako",
+    "website": "https://www.facebook.com/ShinedownEnt/",
+    "phone": "(250) 698-7651",
+    "address": "7764 Rowland, Telkwa, BC V0J 2X0",
+    "province": "BC",
+    "lat": 54.6999427,
+    "lon": -127.1315781
+  },
+  {
+    "id": 17,
+    "companyName": "Long's Logging",
+    "operations": [
+      "Thinning"
+    ],
+    "equipment": [],
+    "models": [],
+    "city": "Terrace",
+    "region": "Kitimat-Stikine",
+    "website": "",
+    "phone": "",
+    "address": "Gd Lcd Main, Terrace, BC, V8G 4A1",
+    "province": "BC",
+    "lat": 54.5107464,
+    "lon": -128.5570057
+  },
+  {
+    "id": 18,
+    "companyName": "Timber Baron Contracting Ltd",
+    "operations": [
+      "Thinning"
+    ],
+    "equipment": [],
+    "models": [],
+    "city": "Terrace",
+    "region": "Kitimat-Stikine",
+    "website": "http://timberbaron.ca/",
+    "phone": "(250) 635-7677",
+    "address": "Suite 203-4650 Lazelle Ave, Terrace, BC V8G 1S6",
+    "province": "BC",
+    "lat": 54.5179021,
+    "lon": -128.6082972
+  },
+  {
+    "id": 19,
+    "companyName": "Borland Creek Logging Ltd.",
+    "operations": [
+      "Thinning"
+    ],
+    "equipment": [],
+    "models": [],
+    "city": "Williams Lake",
+    "region": "Cariboo",
+    "website": "https://www.borlandcreek.ca/",
+    "phone": "(778) 417-0197",
+    "address": "315 Yorston Street, Williams Lake, BC, V2G 1H1",
+    "province": "BC",
+    "lat": 52.1266472,
+    "lon": -122.1420321
+  },
+  {
+    "id": 20,
+    "companyName": "Clusko Logging Enterprises Ltd.",
+    "operations": [
+      "Thinning"
+    ],
+    "equipment": [],
+    "models": [],
+    "city": "Williams Lake",
+    "region": "Cariboo",
+    "website": "https://www.facebook.com/p/Clusko-Logging-Enterprises-Ltd-100064002037101/",
+    "phone": "(250) 392-4822",
+    "address": "4605 McRae St, Williams Lake, BC, V2G 5E9",
+    "province": "BC",
+    "lat": 52.1663046,
+    "lon": -122.1618134
+  },
+  {
+    "id": 21,
+    "companyName": "Nilsson Select Contracting Ltd.",
+    "operations": [
+      "Thinning",
+      "Fuel treatment"
+    ],
+    "equipment": [
+      "Harvester",
+      "Forwarder",
+      "Feller buncher",
+      "Loader",
+      "Exavator"
+    ],
+    "models": [
+      "John Deere 1270D harvester",
+      "Timberjack 1410D forwarder",
+      "Tigercat LX830 feller buncher",
+      "Timberjack 635 loader",
+      "Hitachi 135 excavator",
+      "Caterpillar 314C excavator",
+      "Case 235 excavator"
+    ],
+    "city": "Williams Lake",
+    "region": "Cariboo",
+    "website": "",
+    "phone": "(250) 305-6326",
+    "address": "",
+    "province": "BC",
+    "lat": 0,
+    "lon": 0
+  },
+  {
+    "id": 22,
+    "companyName": "Skywest Environmental Inc.",
+    "operations": [
+      "Thinning"
+    ],
+    "equipment": [],
+    "models": [],
+    "city": "Williams Lake",
+    "region": "Cariboo",
+    "website": "https://skywestenvironmental.ca/",
+    "phone": "(250) 303-1722",
+    "address": "1195 South Lakeside Drive, Williams Lake, BC, V2G 3A6",
+    "province": "BC",
+    "lat": 52.1152332,
+    "lon": -122.1272669
+  },
+  {
+    "id": 23,
+    "companyName": "Tsi Del Del Enterprises Limited",
+    "operations": [
+      "Thinning"
+    ],
+    "equipment": [],
+    "models": [],
+    "city": "Williams Lake",
+    "region": "Cariboo",
+    "website": "https://www.tsideldelenterprises.ca/",
+    "phone": "(250) 392-7802",
+    "address": "4575 Marwick Landing, Williams Lake, BC V2G 5E8",
+    "province": "BC",
+    "lat": 52.1655728,
+    "lon": -122.1685825
+  }
+]

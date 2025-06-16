@@ -1,0 +1,26 @@
+{
+  "name": "forestry-online-database-server",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "set NODE_OPTIONS=--loader ts-node/esm && ts-node App.ts",
+    "geocache": "ts-node utils/GeoCacheUtil.ts",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "axios": "^1.x",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "http-status-codes": "^2.3.0",
+    "xlsx": "^0.18.x"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.18",
+    "@types/express": "^4.17.22",
+    "@types/node": "^20.x",
+    "nodemon": "^3.x",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.x"
+  }
+}

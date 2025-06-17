@@ -7,11 +7,7 @@ node_modules/
 /server/dist/
 
 # Environment files
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+/server/.env
 
 # Debug logs
 npm-debug.log*
@@ -25,7 +21,6 @@ yarn-error.log*
 .vscode/*
 !.vscode/extensions.json
 !.vscode/settings.json
-.idea/
 
 # System files
 .DS_Store

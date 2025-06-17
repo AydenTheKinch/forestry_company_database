@@ -20,7 +20,7 @@ export class App {
 
 // This ends up starting the whole system and listens on a hardcoded port (4321)
 console.log("App - starting");
-const port = 4321;
+const port = process.env.PORT ? parseInt(process.env.PORT) : 8888;
 const app = new App();
 (async (): Promise<void> => {
 	await app.initServer(port);

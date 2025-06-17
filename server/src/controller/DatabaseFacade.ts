@@ -6,7 +6,7 @@ export class DatabaseFacade {
 	private dataProcessor: DataProcessor;
 	private geocache: GeoCache;
 	private isInitialized: boolean = false;
-	private readonly dbPath: string = "C:/Users/ayden/Coding Projects/ForestryOnlineDatabase/server/data/The 22 1.xlsx";
+	private readonly dbPath: string = "./src/data/The 22 1.xlsx";
 
 	constructor() {
 		this.geocache = new GeoCache(this.dbPath);

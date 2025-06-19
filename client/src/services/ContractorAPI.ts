@@ -12,7 +12,8 @@ export const searchContractors = async (filters: FilterState, sortField: string,
         sortDirection
     };
 
-    const response = await fetch('http://localhost:4321/query', {
+    const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:10000';
+    const response = await fetch(`${apiUrl}/query`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

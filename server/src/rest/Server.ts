@@ -3,6 +3,7 @@ import { StatusCodes } from "http-status-codes";
 import { DatabaseFacade } from "../controller/DatabaseFacade";
 import * as http from "http";
 import cors from "cors";
+import { config } from "../config/config";
 
 export class Server {
 	private readonly port: number;
@@ -74,11 +75,12 @@ export class Server {
 		// JSON parser must be place before raw parser because of wildcard matching done by raw parser below
 		this.express.use(express.json());
 		this.express.use(express.raw({ type: "application/*", limit: "10mb" }));
-
-		// Enable CORS to allow cross-origin requests from the frontend application
-		// This is necessary when your frontend and backend are running on different ports/domains
-		// For example: frontend on localhost:3000 accessing backend on localhost:4321
-		this.express.use(cors());
+		// Enable CORS with configuration
+		this.express.use(cors({
+			origin: config.cors.origin,
+			methods: ['GET', 'POST'],
+			credentials: true
+		}));
 	}
 
 	// Registers all request handlers to routes

@@ -1,4 +1,5 @@
 import { Server } from "./rest/Server.ts";
+import { config } from "./config/config";
 
 /**
  * Main app class that is run with the node command. Starts the server.
@@ -18,10 +19,9 @@ export class App {
 	}
 }
 
-// This ends up starting the whole system and listens on a hardcoded port (4321)
+// Initialize the server with configuration
 console.log("App - starting");
-const port = process.env.PORT ? parseInt(process.env.PORT) : 8888;
 const app = new App();
 (async (): Promise<void> => {
-	await app.initServer(port);
+	await app.initServer(Number(config.port));
 })();

@@ -2,9 +2,10 @@
   "name": "forestry-online-database-server",
   "version": "1.0.0",
   "type": "module",
-  "private": true,
+  "private": true,  
   "scripts": {
-    "start": "set NODE_OPTIONS=--loader ts-node/esm && ts-node src/App.ts",
+    "start": "node dist/App.js",
+    "dev": "set NODE_OPTIONS=--loader ts-node/esm && ts-node src/App.ts",
     "geocache": "ts-node utils/GeoCacheUtil.ts",
     "build": "tsc"
   },

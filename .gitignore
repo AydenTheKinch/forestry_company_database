@@ -7,7 +7,28 @@ node_modules/
 /server/dist/
 
 # Environment files
+.env
+.env.local
+.env.development
+.env.development.local
+.env.test
+.env.test.local
+.env.production
+.env.production.local
 /server/.env
+/server/.env.development
+/server/.env.production
+/server/.env.local
+/client/.env
+/client/.env.development
+/client/.env.production
+/client/.env.local
+
+# Keep example files
+!.env.example
+!*.env.example
+!/server/.env.example
+!/client/.env.example
 
 # Debug logs
 npm-debug.log*

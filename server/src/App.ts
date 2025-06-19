@@ -1,4 +1,4 @@
-import { Server } from "./rest/Server.ts";
+import { Server } from "./rest/Server";
 import { config } from "./config/config";
 
 /**

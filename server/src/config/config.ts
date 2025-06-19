@@ -1,11 +1,16 @@
 export const config = {
+    port: process.env.PORT || 10000,
+    nodeEnv: process.env.NODE_ENV || 'development',
     paths: {
-        database: '../data/TestSubset.xlsx',
-        backup: '../data/backup'
+        database: process.env.DATABASE_PATH || '../data/TestSubset.xlsx',
+        backup: process.env.BACKUP_PATH || '../data/backup'
     },
     api: {
-        nominatimDelay: 1000, // milliseconds between API calls
-        userAgent: 'ForestryDatabase aydenkinchla@gmail.com'
+        nominatimDelay: parseInt(process.env.NOMINATIM_DELAY || '1000'), // milliseconds between API calls
+        userAgent: process.env.USER_AGENT || 'ForestryDatabase aydenkinchla@gmail.com'
+    },
+    cors: {
+        origin: process.env.CORS_ORIGIN || 'http://localhost:3000'
     }
 };
 

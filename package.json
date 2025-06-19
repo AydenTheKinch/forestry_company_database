@@ -1,0 +1,15 @@
+{
+  "name": "forestry-company-database",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "cd server && npm run start && cd ../client && npm start",
+    "dev": "concurrently \"cd server && npm run start\" \"cd client && npm start\"",
+    "install-all": "npm install && cd client && npm install && cd ../server && npm install",
+    "build": "cd client && npm run build && cd ../server && npm run build",
+    "test": "concurrently \"cd client && npm test\" \"cd server && npm test\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

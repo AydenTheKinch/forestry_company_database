@@ -2,6 +2,10 @@
 node_modules/
 **/node_modules/
 
+# Keep ContractorDatabase.xlsx
+**/data/
+!/data/ContractorDatabase.xlsx
+
 # Build directories
 /client/build/
 /server/dist/

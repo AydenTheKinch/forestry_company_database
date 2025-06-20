@@ -2,8 +2,9 @@ export const config = {
     port: process.env.PORT || 10000,
     nodeEnv: process.env.NODE_ENV || 'development',
     paths: {
-        database: process.env.DATABASE_PATH || '../data/TestSubset.xlsx',
-        backup: process.env.BACKUP_PATH || '../data/backup'
+        database: process.env.DATABASE_PATH || './src/data/ContractorDatabase.xlsx',
+        backup: process.env.BACKUP_PATH || './src/data/backup',
+        json: process.env.JSON_PATH || './src/data/contractors.json'
     },
     api: {
         nominatimDelay: parseInt(process.env.NOMINATIM_DELAY || '1000'), // milliseconds between API calls

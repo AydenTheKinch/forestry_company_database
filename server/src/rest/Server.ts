@@ -1,9 +1,9 @@
 import express, { Application, Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
-import { DatabaseFacade } from "../controller/DatabaseFacade";
+import { DatabaseFacade } from "../controller/DatabaseFacade.js";
 import * as http from "http";
 import cors from "cors";
-import { config } from "../config/config";
+import { config } from "../config/config.js";
 
 export class Server {
 	private readonly port: number;

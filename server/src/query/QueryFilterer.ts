@@ -1,4 +1,4 @@
-import { Contractor } from "../controller/DatabaseFacade";
+import { Contractor } from "../controller/DatabaseFacade.js";
 
 export class QueryFilterer {
     private readonly filteredContractors: Contractor[];

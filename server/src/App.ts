@@ -1,5 +1,5 @@
-import { Server } from "./rest/Server";
-import { config } from "./config/config";
+import { Server } from "./rest/Server.js";
+import { config } from "./config/config.js";
 
 /**
  * Main app class that is run with the node command. Starts the server.

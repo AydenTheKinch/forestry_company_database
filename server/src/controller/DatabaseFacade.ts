@@ -1,14 +1,16 @@
-import { DataProcessor } from "../service/DataProcessor";
-import { GeoCache } from "../service/GeoCache";
-import { QueryEngine } from "../query/QueryEngine";
+import { DataProcessor } from '../service/DataProcessor.js';
+import { GeoCache } from '../service/GeoCache.js';
+import { QueryEngine } from '../query/QueryEngine.js';
+import { config } from '../config/config.js';
 
 export class DatabaseFacade {
 	private dataProcessor: DataProcessor;
 	private geocache: GeoCache;
 	private isInitialized: boolean = false;
-	private readonly dbPath: string = "./src/data/The 22 1.xlsx";
+	private readonly dbPath: string;
 
 	constructor() {
+		this.dbPath = config.paths.database;
 		this.geocache = new GeoCache(this.dbPath);
 		this.dataProcessor = new DataProcessor(this.dbPath);
 	}

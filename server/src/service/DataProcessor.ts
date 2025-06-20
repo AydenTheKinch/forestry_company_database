@@ -1,6 +1,6 @@
-import { Contractor } from "../controller/DatabaseFacade";  
+import { Contractor } from "../controller/DatabaseFacade.js";  
 import XLSX from 'xlsx';
-//import config from '../config/config';
+import { config } from '../config/config.js';
 import fs from 'fs';
 
 export class DataProcessor {
@@ -64,7 +64,7 @@ export class DataProcessor {
 
 	private saveToJson(): void {
 		const jsonData = JSON.stringify(this.contractors, null, 2);
-		fs.writeFileSync('../data/contractors.json', jsonData);
+		fs.writeFileSync(config.paths.json, jsonData);
 	}
 
 	public getContractors() {

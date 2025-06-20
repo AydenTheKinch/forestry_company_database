@@ -1,4 +1,4 @@
-import { GeoCache } from "../service/GeoCache";
+import { GeoCache } from "../service/GeoCache.js";
 
 async function main() {
     const dbPath = "server/data/Forestry Contractor Database.csv";

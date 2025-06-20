@@ -1,6 +1,6 @@
 import XLSX from 'xlsx';
 import axios from 'axios';
-import { config } from '../config/config';
+import { config } from '../config/config.js';
 
 interface GeocodedData extends Record<string, any> {
     lat?: number;

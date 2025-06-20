@@ -9,7 +9,6 @@
     "strict": true,
     "skipLibCheck": true,
     "outDir": "./dist",
-    //"types": ["node"],
     "resolveJsonModule": true
   },
   "ts-node": {

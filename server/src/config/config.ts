@@ -1,6 +1,6 @@
 export const config = {
     port: process.env.PORT || 10000,
-    nodeEnv: process.env.NODE_ENV || 'development',
+    //nodeEnv: process.env.NODE_ENV || 'development',
     paths: {
         database: process.env.DATABASE_PATH || './src/data/ContractorDatabase.xlsx',
         backup: process.env.BACKUP_PATH || './src/data/backup',
@@ -8,7 +8,7 @@ export const config = {
     },
     api: {
         nominatimDelay: parseInt(process.env.NOMINATIM_DELAY || '1000'), // milliseconds between API calls
-        userAgent: process.env.USER_AGENT || 'ForestryDatabase aydenkinchla@gmail.com'
+        userAgent: process.env.USER_AGENT
     },
     cors: {
         origin: process.env.CORS_ORIGIN || 'http://localhost:3000'

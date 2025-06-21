@@ -1,5 +1,5 @@
 export const config = {
-    port: process.env.PORT || 10000,
+    port: process.env.PORT || 8000,
     paths: {
         database: process.env.DATABASE_PATH || './src/data/ContractorDatabase.xlsx',
         backup: process.env.BACKUP_PATH || './src/data/backup',

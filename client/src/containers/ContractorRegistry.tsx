@@ -4,6 +4,7 @@ import { SearchForm } from '../components/SearchForm';
 import { ContractorMap } from '../components/Map'; 
 import { ResultsTable } from '../components/ResultsTable';
 import { searchContractors } from '../services/ContractorAPI';
+import { LoadingInfo  } from '../components/LoadingInfo';
 import './ContractorRegistry.css';
 
 export interface FilterState {
@@ -26,6 +27,7 @@ const ContractorRegistry: React.FC = () => {
   });
   const [filteredData, setFilteredData] = useState<Contractor[]>([]);
   const [showResults, setShowResults] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
   const [sortField, setSortField] = useState<keyof Contractor>("companyName");
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc");
   const [showAdvanced, setShowAdvanced] = useState<boolean>(false);
@@ -44,6 +46,8 @@ const ContractorRegistry: React.FC = () => {
       setShowResults(true);
     } catch (error) {
       console.error('Search failed:', error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -142,6 +146,7 @@ const ContractorRegistry: React.FC = () => {
       </div>
       
       {/* Results Section */}
+      (loading && <LoadingInfo />)
       {showResults && (
         <ResultsTable 
           filteredData={filteredData}

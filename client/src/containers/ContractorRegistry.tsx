@@ -146,7 +146,6 @@ const ContractorRegistry: React.FC = () => {
       </div>
       
       {/* Results Section */}
-      <LoadingInfo />
       {loading && (<LoadingInfo />)}
       {showResults && (
         <ResultsTable 

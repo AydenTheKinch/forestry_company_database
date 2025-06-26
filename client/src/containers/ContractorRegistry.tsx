@@ -41,6 +41,7 @@ const ContractorRegistry: React.FC = () => {
 
   const handleSearch = async () => {
     try {
+      setLoading(true);
       const results = await searchContractors(filters, sortField, sortDirection);
       setFilteredData(results);
       setShowResults(true);

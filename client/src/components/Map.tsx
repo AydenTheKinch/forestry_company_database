@@ -66,14 +66,19 @@ export const ContractorMap: React.FC<ContractorMapProps> = ({
       filteredData.forEach(contractor => {
         // Check if contractor has valid coordinates
         if (contractor.lat && contractor.lon && contractor.lat !== 0 && contractor.lon !== 0) {
+          // Build popup content
+          let popupContent = `
+            <strong>${contractor.companyName}</strong><br>
+            ${contractor.city}, ${contractor.province}<br>
+          `;
+          if (contractor.phone) {
+            popupContent += `Phone: <a href="tel:${contractor.phone}" target="_blank" rel="noopener noreferrer">${contractor.phone}</a><br>`;
+          }
+
           const marker = L.marker([contractor.lat, contractor.lon])
-            .bindPopup(`
-              <strong>${contractor.companyName}</strong><br>
-              ${contractor.city}, ${contractor.province}<br>
-              ${contractor.address || ''}
-            `, {
-              offset: [0, -20], // Reduced from -30 to -20
-              closeButton: false // Optional: removes the close button for a cleaner look
+            .bindPopup(popupContent, {
+              offset: [0, -20],
+              closeButton: false
             });
           
           marker.on('click', () => {
@@ -116,13 +121,6 @@ export const ContractorMap: React.FC<ContractorMapProps> = ({
         >
           {/* Leaflet map will be rendered here */}
         </div>
-        {selectedContractor && (
-          <div className="mt-4">
-            <h3 className="font-bold">{selectedContractor.companyName}</h3>
-            <p>{selectedContractor.city}, {selectedContractor.province}</p>
-            {selectedContractor.address && <p>{selectedContractor.address}</p>}
-          </div>
-        )}
       </div>
     );
   };

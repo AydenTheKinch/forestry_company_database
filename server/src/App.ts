@@ -1,9 +1,6 @@
 import { Server } from "./rest/Server.js";
 import { config } from "./config/config.js";
 
-/**
- * Main app class that is run with the node command. Starts the server.
- */
 export class App {
 	public async initServer(port: number): Promise<void> {
 		console.log(`App::initServer( ${port} ) - start`);

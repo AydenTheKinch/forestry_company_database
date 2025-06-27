@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { Contractor } from '../types/ContractorRegistryData';
 import { SearchForm } from '../components/SearchForm';
 import { ContractorMap } from '../components/Map'; 
@@ -30,7 +30,6 @@ const ContractorRegistry: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [sortField, setSortField] = useState<keyof Contractor>("companyName");
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc");
-  const [showAdvanced, setShowAdvanced] = useState<boolean>(false);
   const [selectedContractor, setSelectedContractor] = useState<Contractor | null>(null);
   const mapSectionRef = useRef<HTMLDivElement>(null);
   
@@ -134,8 +133,6 @@ const ContractorRegistry: React.FC = () => {
           handleChange={handleChange}
           handleSearch={handleSearch}
           handleClear={handleClear}
-          showAdvanced={showAdvanced}
-          setShowAdvanced={setShowAdvanced}
         />
     
         {/* Map Section */}

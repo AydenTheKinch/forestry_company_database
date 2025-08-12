@@ -5,6 +5,7 @@ import { ContractorMap } from '../components/Map';
 import { ResultsTable } from '../components/ResultsTable';
 import { searchContractors } from '../services/ContractorAPI';
 import { LoadingInfo  } from '../components/LoadingInfo';
+import { APIErrorMessage } from '../components/APIErrorMessage';
 import './ContractorRegistry.css';
 
 export interface FilterState {
@@ -28,6 +29,7 @@ const ContractorRegistry: React.FC = () => {
   const [filteredData, setFilteredData] = useState<Contractor[]>([]);
   const [showResults, setShowResults] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
+  const [APIError, setAPIError] = useState<boolean>(false);
   const [sortField, setSortField] = useState<keyof Contractor>("companyName");
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc");
   const [selectedContractor, setSelectedContractor] = useState<Contractor | null>(null);
@@ -40,12 +42,14 @@ const ContractorRegistry: React.FC = () => {
 
   const handleSearch = async () => {
     try {
+      setAPIError(false);
       setLoading(true);
       const results = await searchContractors(filters, sortField, sortDirection);
       setFilteredData(results);
       setShowResults(true);
     } catch (error) {
       console.error('Search failed:', error);
+      setAPIError(true);
     } finally {
       setLoading(false);
     }
@@ -145,6 +149,7 @@ const ContractorRegistry: React.FC = () => {
       
       {/* Results Section */}
       {loading && (<LoadingInfo />)}
+      {APIError && (<APIErrorMessage />)}
       {showResults && (
         <ResultsTable 
           filteredData={filteredData}

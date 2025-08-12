@@ -20,13 +20,6 @@ export class Server {
 		this.registerRoutes();
 	}
 
-	/**
-	 * Starts the server. Returns a promise that resolves if success. Promises are used
-	 * here because starting the server takes some time and we want to know when it
-	 * is done (and if it worked).
-	 *
-	 * @returns {Promise<void>}
-	 */
 	public async start(): Promise<void> {
 		await Server.controller.initialize();
 		return new Promise((resolve, reject) => {
@@ -49,12 +42,6 @@ export class Server {
 		});
 	}
 
-	/**
-	 * Stops the server. Again returns a promise so we know when the connections have
-	 * actually been fully closed and the port has been released.
-	 *
-	 * @returns {Promise<void>}
-	 */
 	public async stop(): Promise<void> {
 		console.log("Server::stop()");
 		return new Promise((resolve, reject) => {
@@ -70,7 +57,6 @@ export class Server {
 		});
 	}
 
-	// Registers middleware to parse request before passing them to request handlers
 	private registerMiddleware(): void {
 		// JSON parser must be place before raw parser because of wildcard matching done by raw parser below
 		this.express.use(express.json());
@@ -82,11 +68,8 @@ export class Server {
 			credentials: true
 		}));
 	}
-
-	// Registers all request handlers to routes
+	
 	private registerRoutes(): void {
-		// This is an example endpoint this you can invoke by accessing this URL in your browser:
-		// http://localhost:4321/echo/hello
 		this.express.post("/query", Server.query);
 	}
 
